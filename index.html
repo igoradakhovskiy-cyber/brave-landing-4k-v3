@@ -1,0 +1,1288 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BRAVE Capital — зберігати та примножувати зароблене</title>
+<meta name="description" content="Радник BRAVE будує з вами систему для чотирьох фінансових компетенцій: заробляти, витрачати, накопичувати, примножувати. Оцінка за 2 хвилини і безкоштовний розбір ситуації.">
+<meta name="theme-color" content="#F2EFE9">
+<script>document.documentElement.classList.add("js")</script>
+<meta property="og:title" content="Ви добре заробляєте. Допоможемо вам зберігати та примножувати зароблене">
+<meta property="og:description" content="Оцініть свої 4 фінансові компетенції за 2 хвилини — без цифр і реєстрації.">
+<meta property="og:locale" content="uk_UA">
+<link rel="preload" href="assets/fonts/geologica-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/onest-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/vendor/iti/build/css/intlTelInput.min.css">
+<!-- Meta Pixel вантажиться одразу для всіх відвідувачів (крім локального превʼю), див. loadPixel() -->
+<style>
+/* ================= fonts (локально, OFL) ================= */
+@font-face{font-family:"Geologica";font-style:normal;font-weight:100 900;font-display:swap;src:url(assets/fonts/geologica-cyrillic-wght-normal.woff2) format("woff2");unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:"Geologica";font-style:normal;font-weight:100 900;font-display:swap;src:url(assets/fonts/geologica-latin-ext-wght-normal.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Geologica";font-style:normal;font-weight:100 900;font-display:swap;src:url(assets/fonts/geologica-latin-wght-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Onest";font-style:normal;font-weight:100 900;font-display:swap;src:url(assets/fonts/onest-cyrillic-wght-normal.woff2) format("woff2");unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:"Onest";font-style:normal;font-weight:100 900;font-display:swap;src:url(assets/fonts/onest-latin-ext-wght-normal.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Onest";font-style:normal;font-weight:100 900;font-display:swap;src:url(assets/fonts/onest-latin-wght-normal.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+
+/* ================= tokens (стиль BRAVE) ================= */
+:root{
+  --bg:#F2EFE9; --paper:#FFFFFF; --ink:#0E0E0D; --ink-2:#2A2926; --muted:#6B6862;
+  --line:rgba(14,14,13,.12); --blue:#0045FF; --blue-2:#3A6DFF; --blue-soft:#E7EDFF;
+  --on-ink:#F2EFE9; --on-ink-2:rgba(242,239,233,.68); --line-ink:rgba(242,239,233,.16);
+  --f-head:"Geologica",system-ui,sans-serif; --f-body:"Onest",system-ui,sans-serif;
+  --r:20px; --r-sm:12px; --hdr:68px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:calc(var(--hdr) + 12px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 var(--f-body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body.modal-open{overflow:hidden}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit}
+a{color:inherit}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+.blue{color:var(--blue)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+
+/* sections */
+.sec{padding:clamp(64px,9vw,120px) 0}
+.sec--white{background:var(--paper)}
+.sec--ink{background:var(--ink);color:var(--on-ink)}
+.eyebrow{font:500 13px/1.3 var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 16px}
+.eyebrow b{color:var(--blue);font-weight:600;margin-right:8px}
+.sec--ink .eyebrow{color:var(--on-ink-2)}
+.sec--ink .eyebrow b,.sec--ink .blue{color:var(--blue-2)}
+.h1{font:800 clamp(34px,5vw,64px)/1.0 var(--f-head);text-transform:uppercase;letter-spacing:-.02em;margin:0 0 24px;text-wrap:balance}
+.h1 .blue{display:block;margin-top:.12em}
+.h2{font:700 clamp(28px,4.4vw,50px)/1.06 var(--f-head);text-transform:uppercase;letter-spacing:-.015em;margin:0 0 20px;text-wrap:balance;max-width:20em}
+.h3{font:600 clamp(19px,2.2vw,24px)/1.25 var(--f-head);margin:0;text-wrap:balance}
+.lead{font-size:clamp(17px,1.9vw,20px);line-height:1.5;max-width:44em;margin:0 0 28px}
+.sec--ink .lead{color:var(--on-ink-2)}
+.small{font-size:14px}
+.muted{color:var(--muted)}
+.fn{font-size:13px;color:var(--muted);margin:16px 0 0}
+.sec--ink .fn{color:var(--on-ink-2)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--blue);color:#fff;border:0;border-radius:999px;padding:17px 30px;font:600 17px/1.2 var(--f-body);cursor:pointer;text-decoration:none;transition:background .2s,transform .2s;text-align:center}
+.btn:hover{background:var(--blue-2)}
+.btn:active{transform:translateY(1px)}
+.btn--sm{padding:11px 20px;font-size:15px}
+.btn--ghost{background:transparent;color:inherit;box-shadow:inset 0 0 0 1.5px currentColor}
+.btn--ghost:hover{background:rgba(255,255,255,.08)}
+.btn--white{background:#fff;color:var(--blue)}
+.btn--white:hover{background:var(--blue-soft)}
+.btn--block{width:100%}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.linkbtn{background:none;border:0;padding:6px 0;cursor:pointer;text-decoration:underline;text-underline-offset:3px;color:inherit;font-size:15px}
+
+/* review (?review=1): позначки того, що треба підтвердити */
+.todo{}
+html.review .todo{outline:2px dashed #E8833A;outline-offset:2px;background:rgba(232,131,58,.08)}
+
+/* ================= header ================= */
+.hdr{position:sticky;top:0;z-index:40;background:rgba(242,239,233,.86);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid transparent;transition:border-color .2s}
+.hdr.scrolled{border-bottom-color:var(--line)}
+.hdr__in{height:var(--hdr);display:flex;align-items:center;justify-content:space-between;gap:20px}
+.hdr__logo img{height:20px;width:auto}
+.hdr__nav{display:flex;gap:26px;font-size:15px}
+.hdr__nav a{text-decoration:none;color:var(--ink-2)}
+.hdr__nav a:hover{color:var(--blue)}
+.hdr .t-short{display:none}
+@media(max-width:960px){.hdr__nav{display:none}}
+
+/* ================= 01 hero ================= */
+.hero{padding:clamp(28px,4.4vw,60px) 0 clamp(56px,8vw,104px)}
+.hero__grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(32px,5vw,72px);align-items:center}
+.hero .h1{font-size:clamp(32px,3.9vw,52px)}
+.hero__cta{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px}
+.micro{font-size:14px;color:var(--muted);margin:12px 0 0}
+.trust{display:flex;flex-wrap:wrap;gap:12px 36px;margin:36px 0 0;padding:24px 0 0;border-top:1px solid var(--line)}
+.trust div{margin:0}
+.trust dt{font:700 28px/1 var(--f-head);margin:0 0 6px}
+.trust dd{margin:0;font-size:14px;color:var(--muted)}
+.mosaic{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.mosaic figure{margin:0;position:relative;border-radius:14px;overflow:hidden;aspect-ratio:4/5;background:#ddd}
+.mosaic img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05)}
+.mosaic figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px 10px 8px;font-size:11.5px;line-height:1.25;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.66))}
+.mosaic .stat{background:var(--blue);color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:14px}
+.mosaic .stat b{font:800 34px/1 var(--f-head)}
+.mosaic .stat span{font-size:13px;line-height:1.3;margin-top:6px}
+.factcard{margin:12px 0 0;background:var(--paper);border-radius:14px;padding:18px 20px;font-size:15.5px;line-height:1.45}
+.factcard b{font-family:var(--f-head);font-weight:700}
+@media(max-width:900px){
+  .hero__grid{grid-template-columns:1fr}
+  .mosaic{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+
+/* ================= 02 pain ================= */
+.pains{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px;margin:8px 0 0}
+.pain{grid-column:span 2;background:var(--bg);border-radius:var(--r);padding:26px;display:flex;flex-direction:column}
+.pain:nth-child(4),.pain:nth-child(5){grid-column:span 3}
+.pain__n{font:600 14px/1 var(--f-head);color:var(--blue);margin:0 0 18px}
+.pain .h3{margin:0 0 10px}
+.pain p{margin:0 0 18px;color:var(--ink-2)}
+.pain blockquote{margin:auto 0 0;padding:16px 0 0;border-top:1px solid var(--line);font-style:italic;font-size:16px}
+.pain blockquote footer{font-style:normal;font-size:13px;color:var(--muted);margin-top:6px}
+.pain .fact{margin:auto 0 0;padding:16px 0 0;border-top:1px solid var(--line);font-size:15px;color:var(--ink-2)}
+.pain .fact span{display:block;font-size:13px;color:var(--muted);margin-top:6px}
+.verdict{margin:40px 0 0;font:600 clamp(20px,2.6vw,28px)/1.3 var(--f-head);max-width:30em}
+.verdict span{display:block;font:400 17px/1.5 var(--f-body);color:var(--muted);margin-top:10px}
+@media(max-width:900px){.pains{grid-template-columns:1fr}.pain,.pain:nth-child(4),.pain:nth-child(5){grid-column:auto}}
+
+/* ================= 03 skills → 04 quiz: після абзацу одразу тест ================= */
+#skills{padding-bottom:clamp(28px,3.4vw,44px)}
+#skills .lead{margin-bottom:0}
+
+/* ================= 04 quiz ================= */
+.quiz{background:var(--ink);color:var(--on-ink);border-radius:var(--r);padding:clamp(26px,5vw,60px)}
+.quiz .eyebrow{color:var(--on-ink-2)}
+.quiz .eyebrow b,.quiz .h2 .blue{color:var(--blue-2)}
+.quiz .lead{color:var(--on-ink-2)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px;padding:0;list-style:none}
+.chips li{border:1px solid var(--line-ink);border-radius:999px;padding:6px 14px;font-size:14px;color:var(--on-ink-2)}
+.quiz .micro{color:var(--on-ink-2)}
+.prog{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;margin:0 0 22px}
+.prog i{height:4px;border-radius:2px;background:var(--line-ink);transition:background .3s}
+.prog i.on{background:var(--blue-2)}
+.step-meta{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:0 0 14px;font-size:14px;color:var(--on-ink-2)}
+.comp-chip{background:rgba(58,109,255,.2);color:#C9D6FF;border-radius:999px;padding:4px 12px;font-weight:500}
+.q-text{font:600 clamp(21px,3vw,30px)/1.22 var(--f-head);margin:0 0 8px;max-width:28em;text-wrap:balance}
+.q-text:focus{outline:none}
+.q-hint{font-size:15px;color:var(--on-ink-2);margin:0 0 20px;min-height:1.4em}
+.opts{display:grid;gap:10px;margin:0 0 22px;padding:0;list-style:none;max-width:740px}
+.opt{width:100%;text-align:left;background:rgba(242,239,233,.06);border:1px solid var(--line-ink);border-radius:var(--r-sm);padding:15px 18px;font-size:17px;line-height:1.35;cursor:pointer;display:flex;gap:14px;align-items:center;transition:background .15s,border-color .15s}
+.opt:hover{background:rgba(242,239,233,.11);border-color:rgba(242,239,233,.32)}
+.opt .mark{flex:none;width:20px;height:20px;border-radius:50%;border:1.5px solid rgba(242,239,233,.45);display:grid;place-items:center}
+.opt--multi .mark{border-radius:5px}
+.opt[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+.opt[aria-pressed="true"] .mark{border-color:#fff;background:#fff}
+.opt[aria-pressed="true"] .mark::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--blue)}
+.opt--multi[aria-pressed="true"] .mark::after{border-radius:2px}
+.opt[aria-disabled="true"]{opacity:.42;cursor:not-allowed}
+.q-nav{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px}
+.q-nav .linkbtn{color:var(--on-ink-2)}
+.fade{animation:fade .28s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.res{margin:16px 0 0}
+.res-head{background:var(--paper);border-radius:var(--r);padding:clamp(24px,5vw,48px);margin:0 0 16px}
+.res-head .h2{font-size:clamp(26px,3.6vw,40px)}
+.summary p{font-size:clamp(17px,2vw,20px);line-height:1.5;margin:0 0 12px;max-width:44em}
+.summary p:first-child{font-weight:600}
+.levels{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:26px 0 0}
+.lvl{border:1px solid var(--line);border-radius:var(--r-sm);padding:16px}
+.lvl__n{font:600 15px/1.2 var(--f-head);text-transform:uppercase;letter-spacing:.02em;margin:0 0 12px}
+.lvl__bar{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin:0 0 10px}
+.lvl__bar i{height:8px;border-radius:3px;background:rgba(14,14,13,.08)}
+.lvl[data-l="strong"] .lvl__bar i{background:var(--blue)}
+.lvl[data-l="base"] .lvl__bar i:nth-child(-n+2){background:#6F93FF}
+.lvl[data-l="growth"] .lvl__bar i:nth-child(-n+1){background:#A9BCFF}
+.lvl__w{font-size:15px;color:var(--muted)}
+.lvl[data-l="strong"] .lvl__w{color:var(--blue);font-weight:600}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:0 0 16px}
+.card{background:var(--paper);border-radius:var(--r);padding:clamp(22px,4vw,36px)}
+.card > .h3{margin:0 0 18px}
+.help{margin:0;padding:0;list-style:none;counter-reset:h}
+.help li{counter-increment:h;display:grid;grid-template-columns:34px 1fr;gap:4px 12px;padding:14px 0;border-top:1px solid var(--line)}
+.help li:first-child{border-top:0;padding-top:0}
+.help li::before{content:counter(h,decimal-leading-zero);font:600 14px/1.6 var(--f-head);color:var(--blue);grid-row:span 2}
+.help b{font-weight:600}
+.help span{color:var(--ink-2);font-size:16px}
+.story__who{font:600 18px/1.3 var(--f-head);margin:0 0 16px}
+.ab{display:grid;gap:12px}
+.ab div{border-radius:var(--r-sm);padding:14px 16px;background:var(--bg)}
+.ab div:last-child{background:var(--blue-soft)}
+.ab small{display:block;font:600 12px/1.2 var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+.ab div:last-child small{color:var(--blue)}
+.ab p{margin:0;font-size:16px}
+.ab q{display:block;margin:8px 0 0;font-style:italic;quotes:none;color:var(--ink-2)}
+.agenda{margin:0;padding:0;list-style:none}
+.agenda li{display:grid;grid-template-columns:34px 1fr;gap:2px 12px;padding:14px 0;border-top:1px solid var(--line)}
+.agenda li:first-child{border-top:0;padding-top:0}
+.agenda .n{font:600 14px/1.6 var(--f-head);color:var(--blue);grid-row:span 2}
+.agenda b{font-weight:600}
+.agenda .det{color:var(--ink-2);font-size:16px;filter:blur(5px);user-select:none;pointer-events:none}
+.lock{display:flex;gap:10px;align-items:flex-start;background:var(--bg);border-radius:var(--r-sm);padding:12px 14px;font-size:15px;margin:14px 0 0}
+.lock svg{flex:none;margin-top:3px}
+.res-cta{display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px;margin:26px 0 0}
+.res-cta span{color:var(--muted);font-size:15px}
+.band{background:var(--blue);color:#fff;border-radius:var(--r);padding:clamp(24px,5vw,44px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.95fr);gap:24px clamp(24px,4vw,48px);align-items:start}
+.band .h3{color:#fff;font-size:clamp(21px,2.4vw,28px)}
+.band__txt > p{margin:12px 0 0;color:rgba(255,255,255,.84);font-size:16px}
+.band__steps{margin:24px 0 0;padding:0;list-style:none;counter-reset:bs}
+.band__steps li{counter-increment:bs;display:grid;grid-template-columns:40px 1fr;gap:2px 12px;padding:14px 0;border-top:1px solid rgba(255,255,255,.22)}
+.band__steps li::before{content:counter(bs,decimal-leading-zero);font:700 15px/1.5 var(--f-head);color:#fff;grid-row:span 2}
+.band__steps b{font-weight:600}
+.band__steps span{color:rgba(255,255,255,.84);font-size:15.5px}
+.again{text-align:center;margin:18px 0 0}
+@media(max-width:860px){.levels{grid-template-columns:repeat(2,minmax(0,1fr))}.grid2,.band{grid-template-columns:1fr}}
+
+/* ================= 05 people ================= */
+.founder{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(24px,4vw,56px);align-items:center;background:var(--bg);border-radius:var(--r);padding:clamp(20px,3vw,32px)}
+.founder__ph{border-radius:14px;overflow:hidden;aspect-ratio:4/5;max-width:380px}
+.founder__ph img{width:100%;height:100%;object-fit:cover;object-position:50% 0}
+.founder .h3{font-size:clamp(22px,2.6vw,30px);margin:0 0 4px}
+.founder__role{color:var(--muted);margin:0 0 16px}
+.founder p{margin:0 0 14px}
+.certs{display:flex;gap:10px;margin:18px 0 0;flex-wrap:wrap}
+.certs button{border:1px solid var(--line);background:var(--paper);border-radius:10px;padding:6px;cursor:zoom-in;width:150px}
+.certs img{width:100%;height:auto;border-radius:6px}
+.certs span{display:block;font-size:12px;color:var(--muted);margin-top:6px;text-align:left}
+.stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:16px 0 0}
+.stats div{background:var(--bg);border-radius:var(--r-sm);padding:18px}
+.stats b{display:block;font:800 30px/1 var(--f-head);margin:0 0 8px}
+.stats span{font-size:14px;color:var(--muted)}
+.wall{margin:40px 0 0;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.wall__track{display:flex;gap:12px;width:max-content;animation:marquee 80s linear infinite}
+.wall:hover .wall__track{animation-play-state:paused}
+.wall figure{margin:0;width:150px;flex:none}
+.wall img{width:150px;height:180px;object-fit:cover;border-radius:12px;filter:grayscale(1)}
+.wall figcaption{font-size:12px;line-height:1.3;margin-top:8px;color:var(--ink-2)}
+.wall figcaption b{display:block;font-size:13px;color:var(--ink)}
+@keyframes marquee{to{transform:translateX(-50%)}}
+.wall-cap{font-size:15px;color:var(--muted);margin:14px 0 0}
+@media(max-width:1020px){.stats{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:760px){.founder{grid-template-columns:1fr}.founder__ph{max-width:none;aspect-ratio:1/1}}
+@media(max-width:520px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* ================= 06 faq ================= */
+.faq{max-width:860px}
+.faq details{border-top:1px solid var(--line)}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;padding:22px 44px 22px 0;font:600 clamp(17px,2vw,20px)/1.35 var(--f-head);position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";position:absolute;right:6px;top:50%;width:14px;height:14px;margin-top:-10px;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);transform:rotate(45deg);transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(225deg);margin-top:-2px}
+.faq details p{margin:0 0 22px;color:var(--ink-2);max-width:44em}
+
+/* ================= 11 final + forms ================= */
+.final{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:clamp(28px,5vw,72px);align-items:start}
+.final .h2{max-width:13em}
+.final__alt{color:var(--on-ink-2);font-size:15px;margin:22px 0 0}
+.formbox{background:var(--paper);color:var(--ink);border-radius:var(--r);padding:clamp(22px,3.4vw,34px)}
+.field{margin:0 0 14px}
+.field > label,.field .lbl{display:block;font-size:14px;font-weight:500;margin:0 0 6px}
+.input{width:100%;font:inherit;font-size:16px;padding:13px 14px;border:1px solid rgba(14,14,13,.2);border-radius:var(--r-sm);background:#fff;color:var(--ink)}
+.input:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,69,255,.15)}
+.input[aria-invalid="true"]{border-color:#C0362C}
+.iti{width:100%;display:block}
+.iti__country-container{padding:0}
+.err{display:none;color:#C0362C;font-size:13px;margin:6px 0 0}
+.err.show{display:block}
+.attached{display:none;background:var(--blue-soft);border-radius:var(--r-sm);padding:10px 14px;font-size:14px;margin:0 0 16px}
+body.quiz-done .attached{display:block}
+.form__legal{font-size:12.5px;color:var(--muted);margin:12px 0 0;line-height:1.45}
+.form__submit-error{display:none;color:#C0362C;font-size:13px;margin:10px 0 0;line-height:1.45}
+.form__submit-error.show{display:block}
+.messenger-confirm{display:flex;align-items:flex-start;gap:10px;margin:-2px 0 16px;padding:10px 12px;border:1px solid transparent;border-radius:var(--r-sm);transition:background .2s,border-color .2s,color .2s,box-shadow .2s}
+.messenger-confirm__input{flex:0 0 auto;width:18px;height:18px;margin:1px 0 0;accent-color:var(--blue);cursor:pointer}
+.messenger-confirm label{font-size:13.5px;line-height:1.4;cursor:pointer}
+.messenger-confirm__input:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.messenger-confirm.is-attention{color:#9F241D;background:#FFF1EF;border-color:#C0362C;box-shadow:0 0 0 3px rgba(192,54,44,.12)}
+.messenger-confirm.is-attention .messenger-confirm__input{outline:2px solid #C0362C;outline-offset:2px}
+.btn[aria-disabled="true"],.btn[aria-disabled="true"]:hover{background:var(--blue);opacity:.45;cursor:not-allowed;transform:none}
+.form__ok{display:none}
+.form__ok.show{display:block}
+.form__ok h3{font:700 24px/1.2 var(--f-head);margin:0 0 10px}
+.form__ok p,.form__ok li{color:var(--ink-2)}
+.form__ok ul{padding-left:18px;margin:8px 0 0}
+@media(max-width:900px){.final{grid-template-columns:1fr}}
+
+/* modal */
+.modal{position:fixed;inset:0;z-index:70;display:none;align-items:flex-end;justify-content:center;background:rgba(14,14,13,.55)}
+.modal.open{display:flex}
+.sheet{background:var(--paper);width:100%;max-width:520px;max-height:94vh;overflow:auto;border-radius:var(--r) var(--r) 0 0;padding:28px 22px calc(22px + env(safe-area-inset-bottom));position:relative}
+@media(min-width:640px){.modal{align-items:center;padding:20px}.sheet{border-radius:var(--r);padding:34px}}
+.x{position:absolute;top:12px;right:12px;width:40px;height:40px;border:0;background:var(--bg);border-radius:50%;cursor:pointer;font-size:22px;line-height:1}
+.sheet h2{font:700 24px/1.2 var(--f-head);margin:0 44px 8px 0}
+.sheet .sub{color:var(--muted);margin:0 0 18px;font-size:15px}
+.lightbox{position:fixed;inset:0;z-index:80;background:rgba(14,14,13,.85);display:none;align-items:center;justify-content:center;padding:20px}
+.lightbox.open{display:flex}
+.lightbox img{max-width:min(92vw,900px);max-height:86vh;border-radius:10px;background:#fff}
+.lightbox .x{background:#fff}
+
+/* sticky mobile cta */
+/* схована кнопка виїжджає повністю за край екрана, з урахуванням безпечної зони iPhone (інакше з-під низу визирає смужка) */
+.sticky{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:45;display:none;transform:translateY(calc(100% + 40px + env(safe-area-inset-bottom)));opacity:0;visibility:hidden;transition:transform .25s,opacity .2s,visibility 0s linear .25s}
+.sticky .btn{width:100%;box-shadow:0 10px 30px rgba(0,69,255,.35)}
+@media(max-width:760px){.sticky{display:block}.sticky.show{transform:none;opacity:1;visibility:visible;transition:transform .25s,opacity .2s,visibility 0s}}
+
+
+/* footer */
+.foot{background:var(--ink);color:var(--on-ink-2);padding:40px 0 calc(90px + env(safe-area-inset-bottom));font-size:13.5px;border-top:1px solid var(--line-ink)}
+.foot__in{display:flex;flex-wrap:wrap;gap:16px 40px;justify-content:space-between;align-items:flex-start}
+.foot img{height:18px;width:auto;margin:0 0 12px}
+.foot p{margin:0 0 8px;max-width:52em}
+.foot a{color:var(--on-ink)}
+@media(min-width:761px){.foot{padding-bottom:40px}}
+
+/* reveal */
+.js .rv{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}html{scroll-behavior:auto}}
+
+@media(max-width:480px){
+  .wrap{padding:0 16px}
+  .hdr .t-long{display:none}
+  .hdr .t-short{display:inline}
+  .opt{padding:14px;font-size:16px}
+  .res-head,.card{padding:22px 18px}
+  .levels{gap:8px}
+  .lvl{padding:12px}
+  .lvl__n{font-size:13px;letter-spacing:0}
+  .trust{gap:14px 24px}
+  .trust dt{font-size:24px}
+  .btn{padding:16px 22px}
+  .mosaic{gap:6px}
+  .mosaic figcaption{font-size:10px;padding:18px 6px 6px}
+  .mosaic .stat b{font-size:26px}
+  .mosaic .stat span{font-size:11px}
+}
+</style>
+</head>
+<body>
+
+<header class="hdr" id="hdr">
+  <div class="wrap hdr__in">
+    <a href="#top" class="hdr__logo" aria-label="BRAVE Capital — на початок"><img src="assets/brand/logo2-black.png" alt="BRAVE Capital" width="141" height="20"></a>
+    <nav class="hdr__nav" aria-label="Розділи сторінки">
+      <a href="#skills">Компетенції</a><a href="#quiz">Оцінка</a><a href="#people">Команда</a><a href="#faq">Питання</a>
+    </nav>
+    <button type="button" class="btn btn--sm" data-lead="header"><span class="t-long">Записатися на розбір</span><span class="t-short">На розбір</span></button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ 01 HERO ============ -->
+<section class="hero" aria-labelledby="h1">
+  <div class="wrap hero__grid">
+    <div>
+      <p class="eyebrow">BRAVE Capital — ательє персональних фінансів</p>
+      <h1 class="h1" id="h1">Ви добре заробляєте. <span class="blue">Допоможемо вам зберігати та примножувати зароблене</span></h1>
+      <p class="lead">Радник BRAVE будує з вами систему, у якій видно всі ваші гроші. Ви знаєте, скільки можна витратити без шкоди планам, у вас є резерв і гроші під цілі, а вільні кошти працюють за планом. Рутину веде радник, рішення — ваші.</p>
+      <div class="hero__cta" id="heroCta">
+        <a class="btn" href="#quiz" data-quiz-start data-track="hero_quiz">Оцінити свої 4 компетенції · 2 хв <span aria-hidden="true">→</span></a>
+        <button type="button" class="linkbtn" data-lead="hero">або одразу записатися на безкоштовний розбір</button>
+      </div>
+      <p class="micro">10 питань · лише кнопки · без цифр</p>
+      <dl class="trust">
+        <div><dt>300+</dt><dd>клієнтів у супроводі</dd></div>
+        <div><dt>9,3 / 10</dt><dd>оцінка клієнтів · 282 відповіді</dd></div>
+        <div><dt>900+</dt><dd>стратегій BRAVE PLAN</dd></div>
+      </dl>
+    </div>
+    <div>
+      <div class="mosaic">
+        <figure><img src="assets/clients/yaroslav-kuzmich.jpg" alt="Ярослав Кузьміч" width="400" height="400" fetchpriority="high"><figcaption>Ярослав Кузьміч · YARMICH</figcaption></figure>
+        <figure><img src="assets/clients/olena-pohlyad.jpg" alt="Олена Погляд" width="400" height="400"><figcaption>Олена Погляд · VOIR</figcaption></figure>
+        <figure><img src="assets/clients/ivan-shchebetun.jpg" alt="Іван Щебетун" width="400" height="400"><figcaption>Іван Щебетун · UNIT Development</figcaption></figure>
+        <figure class="stat"><b>300+</b><span>клієнтів і родин у супроводі</span></figure>
+        <figure><img src="assets/clients/oleksandra-klepchenko.jpg" alt="Олександра Клепченко" width="400" height="400"><figcaption>Олександра Клепченко · продюсерка</figcaption></figure>
+        <figure><img src="assets/clients/yuriy-bohoslavets.jpg" alt="Юрій Богославець" width="319" height="480"><figcaption>Юрій Богославець · DSN Group</figcaption></figure>
+      </div>
+      <p class="factcard">Від <b>4 500 $</b> до <b>37 000 €</b> на місяць — такий дохід був на старті у клієнтів з наших кейсів. Питання в усіх однакові: де гроші, скільки можна витратити і що робити з рештою.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 PAIN ============ -->
+<section class="sec sec--white" id="pain" aria-labelledby="pain-h">
+  <div class="wrap">
+    <p class="eyebrow"><b>02</b>Як це буває</p>
+    <h2 class="h2" id="pain-h">Гроші є. <span class="blue">Опори немає</span></h2>
+    <p class="lead">Так описують свої фінанси люди з дуже різним доходом — від IT-керівника в найманні до подружжя з бізнесом на мільйон. І майже кожен уже пробував навести лад самостійно: таблиця, застосунок, нове правило. Вистачало на місяць-два.</p>
+    <div class="pains">
+      <article class="pain rv">
+        <span class="pain__n">01</span>
+        <h3 class="h3">Де гроші — незрозуміло</h3>
+        <p>Дохід добрий, а в кінці місяця не скажеш, куди все пішло.</p>
+        <blockquote>«Ми працюємо більше, ніж будь-коли… але не розуміємо, де наші гроші»<footer>— подружжя, власники франшизи</footer></blockquote>
+      </article>
+      <article class="pain rv">
+        <span class="pain__n">02</span>
+        <h3 class="h3">Кожна велика покупка — через сумнів</h3>
+        <p>Заробляєте достатньо, але немає суми, про яку точно знаєте: її можна витратити спокійно.</p>
+        <blockquote>«Я хочу відчути більше свободи і дозволити собі великі чеки… але не знаю, з чого почати»<footer>— власниця маркетингової агенції</footer></blockquote>
+      </article>
+      <article class="pain rv">
+        <span class="pain__n">03</span>
+        <h3 class="h3">Гроші лежать і нічого не роблять</h3>
+        <p>Відкладено чимало, але незрозуміло, скільки з цього резерв, а що могло б працювати.</p>
+        <blockquote>«Є кеш — що з ним робити?»<footer>— тімлід і власник спортзалу</footer></blockquote>
+      </article>
+      <article class="pain rv">
+        <span class="pain__n">04</span>
+        <h3 class="h3">Інвестиції — «колись потім» або в мінусі</h3>
+        <p>Або здається, що для цього треба більше грошей. Або вже пробували самі — і тепер не знаєте, що з цим робити.</p>
+        <p class="fact">Так було в IT-керівника: купив акції на піку 2021-го, і до 2023-го портфель був у мінусі.<span>з історії клієнта BRAVE</span></p>
+      </article>
+      <article class="pain rv">
+        <span class="pain__n">05</span>
+        <h3 class="h3">Робота заради роботи</h3>
+        <p>Дохід є, а навіщо рости далі — незрозуміло. Сили йдуть на те, щоб тримати все в голові.</p>
+        <p class="fact">Так було в девелопера: працював «по інерції» і не бачив, навіщо заробляти більше.<span>з історії клієнта BRAVE</span></p>
+      </article>
+    </div>
+    <p class="verdict">Проблема не в доході, а в системі навколо нього.<span>А коли все тримається на одному бізнесі чи одній роботі, тривога не минає навіть у добрі місяці.</span></p>
+  </div>
+</section>
+
+<!-- ============ 03 SKILLS ============ -->
+<section class="sec" id="skills" aria-labelledby="skills-h">
+  <div class="wrap">
+    <p class="eyebrow"><b>03</b>Чотири компетенції</p>
+    <h2 class="h2" id="skills-h">Заробляти — одна компетенція. <span class="blue">Розпоряджатися заробленим — ще три</span></h2>
+    <p class="lead">Бізнес і робота вчать заробляти. Як витрачати, накопичувати й примножувати — не вчить ніхто, а займатися цим самому зазвичай ніколи. Тому навіть за сильного доходу гроші часто живуть самі по собі. Радник BRAVE працює з усіма чотирма компетенціями разом: вони пов'язані між собою.</p>
+  </div>
+</section>
+
+<!-- ============ 04 QUIZ ============ -->
+<section class="sec" id="quiz" aria-labelledby="quiz-h" style="padding-top:0">
+  <div class="wrap">
+    <div class="quiz">
+      <div id="intro">
+        <p class="eyebrow"><b>04</b>Оцінка 4 компетенцій</p>
+        <h2 class="h2" id="quiz-h">Скільки з чотирьох <span class="blue">працює у вас?</span></h2>
+        <ul class="chips" aria-hidden="true"><li>Заробляти</li><li>Витрачати</li><li>Накопичувати</li><li>Примножувати</li></ul>
+        <p class="lead">10 питань, лише кнопки, без цифр. Наприкінці — коротке резюме вашої ситуації, рівень кожної компетенції та питання, які варто розібрати з радником.</p>
+        <button class="btn" type="button" id="qStart">Почати оцінку <span aria-hidden="true">→</span></button>
+        <p class="micro">Результат — одразу на екрані, контакти для цього не потрібні.</p>
+      </div>
+      <div id="steps" hidden>
+        <div class="prog" id="prog" aria-hidden="true"></div>
+        <div id="step" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div class="res" id="result" hidden aria-labelledby="res-h" tabindex="-1">
+      <div class="res-head">
+        <p class="eyebrow"><b>✓</b>Ваше резюме</p>
+        <h2 class="h2" id="res-h">Ось як у вас <span class="blue">із чотирма компетенціями</span></h2>
+        <div class="summary" id="summary"></div>
+        <div class="levels" id="levels"></div>
+        <div class="res-cta">
+          <a class="btn" href="#quizBook" id="toBook" data-track="result_book">Записатися на безкоштовний розбір <span aria-hidden="true">↓</span></a>
+          <span>Радник побачить ці відповіді й розбере з вами кожен пункт.</span>
+        </div>
+      </div>
+      <div class="grid2">
+        <div class="card"><h3 class="h3">Як радник BRAVE допоможе</h3><ol class="help" id="help"></ol></div>
+        <div class="card"><h3 class="h3">У кого було схоже</h3><div id="story"></div><p class="fn">* Сума з урахуванням нових внесків, а не результат інвестицій.</p></div>
+      </div>
+      <div class="card" style="margin:0 0 16px">
+        <h3 class="h3">Що обговорити на розборі з радником</h3>
+        <ol class="agenda" id="agenda"></ol>
+        <div class="lock">
+          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M5 7V5a3 3 0 1 1 6 0v2h1a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1Zm1.5 0h3V5a1.5 1.5 0 0 0-3 0v2Z"/></svg>
+          <span>Кожен пункт радник детально розбере з вами на безкоштовному розборі.</span>
+        </div>
+      </div>
+      <div class="band" id="quizBook">
+        <div class="band__txt">
+          <h3 class="h3">Наступний крок — розбір вашої ситуації з радником BRAVE</h3>
+          <p>Безкоштовно · онлайн, з будь-якої країни · 1-на-1. Радник уже бачитиме ваші відповіді — розмова почнеться не з нуля.</p>
+          <ol class="band__steps">
+            <li><b>Залишаєте заявку</b><span>Це хвилина: ім'я та номер телефону.</span></li>
+            <li><b>Менеджер BRAVE зв'язується з вами</b><span>Уточнює ваш запит і зручний час, підбирає радника.</span></li>
+            <li><b>Розбір з радником</b><span>Онлайн, 1-на-1. Радник пройде з вами пункти з оцінки й відповість на головне питання.</span></li>
+          </ol>
+        </div>
+        <div class="formbox" data-form-slot="quiz_book" data-fid="qz"></div>
+      </div>
+      <p class="again"><button class="linkbtn" type="button" id="qAgain">Пройти оцінку ще раз</button></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 PEOPLE ============ -->
+<section class="sec sec--white" id="people" aria-labelledby="pp-h">
+  <div class="wrap">
+    <p class="eyebrow"><b>05</b>Люди BRAVE</p>
+    <h2 class="h2" id="pp-h">З вами працює одна людина. <span class="blue">За нею — уся практика BRAVE</span></h2>
+    <div class="founder rv">
+      <div class="founder__ph"><img src="assets/brand/founder-nazarii-rybinskyi.jpg" alt="Назарій Рибінський" width="460" height="575" loading="lazy"></div>
+      <div>
+        <h3 class="h3">Назарій Рибінський</h3>
+        <p class="founder__role">Засновник і CEO BRAVE Capital</p>
+        <p>У фінансах з 2015 року. Автор методології BRAVE PLAN і програми підготовки радників IFA BOOTCAMP. У команді — 10 радників, які працюють за однією методологією й одним стандартом звітності.</p>
+        <div class="certs">
+          <button type="button" data-cert="assets/brand/cert-138598.jpg"><img src="assets/brand/cert-138598.jpg" alt="Свідоцтво № 138598 на методологію BRAVE PLAN" width="520" height="304" loading="lazy"><span>Свідоцтво № 138598 · BRAVE PLAN</span></button>
+          <button type="button" data-cert="assets/brand/cert-140162.jpg"><img src="assets/brand/cert-140162.jpg" alt="Свідоцтво № 140162 на програму IFA BOOTCAMP" width="520" height="296" loading="lazy"><span>Свідоцтво № 140162 · IFA BOOTCAMP</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="rv"><b>300+</b><span>клієнтів у супроводі</span></div>
+      <div class="rv"><b>9,3/10</b><span>оцінка клієнтів · 282 відповіді</span></div>
+      <div class="rv"><b>900+</b><span>стратегій BRAVE PLAN</span></div>
+      <div class="rv"><b>$2,3 млн</b><span>найбільший капітал у супроводі</span></div>
+      <div class="rv"><b>7 років</b><span>найдовша співпраця клієнта з радником</span></div>
+    </div>
+    <div class="wall" aria-label="Клієнти BRAVE"><div class="wall__track" id="wall"></div></div>
+    <p class="wall-cap">Серед клієнтів BRAVE — засновники брендів, виробництв, агенцій і клінік, IT-фахівці та гравці збірної України з футболу.</p>
+  </div>
+</section>
+
+<!-- ============ 06 FAQ ============ -->
+<section class="sec" id="faq" aria-labelledby="faq-h">
+  <div class="wrap">
+    <p class="eyebrow"><b>06</b>Питання</p>
+    <h2 class="h2" id="faq-h">Що зазвичай <span class="blue">питають</span></h2>
+    <div class="faq">
+      <details><summary>У мене немає бізнесу. Мені це підходить?</summary><p>Так. Серед клієнтів BRAVE — IT-керівники, експерти, люди з власною практикою й кількома джерелами доходу. Чотири компетенції однакові для всіх, різняться лише інструменти.</p></details>
+      <details><summary>У мене не такий великий дохід. Може, рано?</summary><p>Радник потрібен не з певної суми, а тоді, коли грошей, рахунків і рішень стало більше, ніж хочеться тримати в голові. Серед наших клієнтів є ті, хто починав з доходу 4 500 $ на місяць.</p></details>
+      <details><summary>Мені заборонятимуть витрачати?</summary><p>Ні. У багатьох клієнтів витрати з часом навіть зростають — разом з доходом, свідомо і без почуття провини. Мета не в тому, щоб урізати життя, а в тому, щоб знати, скільки можна.</p></details>
+      <details><summary>Я можу розібратися сам. Навіщо радник?</summary><p>Розібратися можна. Складніше — тримати систему роками, коли на неї немає часу. Облік, який почали й закинули, — найчастіша історія наших клієнтів до BRAVE. Цю частину бере на себе радник.</p></details>
+      <details><summary>Я живу не в Україні. Ви зі мною працюватимете?</summary><p>Так. Ми працюємо онлайн з клієнтами в різних країнах і з різними валютами. <span class="todo" title="ЮРИСТ: формат для резидентів ЄС">Питання податків і місцевих правил вирішуємо разом з вашими місцевими фахівцями.</span></p></details>
+      <details><summary>Скільки коштує робота з радником?</summary><p>Вартість індивідуальна: вона залежить від вашої ситуації, цілей і формату супроводу. Радник назве її після розбору, коли буде зрозуміло, що саме потрібно. Розбір — безкоштовний.</p></details>
+      <details><summary>Хто бачить мої дані? Ви берете гроші в управління?</summary><p>Ваші дані бачать лише менеджер і ваш радник, за запитом підписуємо NDA. Гроші лишаються на ваших рахунках — ми не приймаємо кошти на свої. Оцінка на цій сторінці не питає жодних сум.</p></details>
+      <details><summary>Чоловік чи дружина не хоче цим займатися. Що робити?</summary><p>Так буває часто. В одній із наших історій чоловік вважав облік зайвим, а дружина хотіла порядку, тож бюджет родини взяв на себе радник. <span class="todo" title="ПІДТВЕРДИТИ: формат спільної сесії для пари">Розбір можна пройти разом.</span></p></details>
+      <details><summary>Чим радник відрізняється від бухгалтера чи банку?</summary><p>Бухгалтер відповідає за податки й звітність, банк — за свої продукти. Радник BRAVE бачить усі ваші гроші разом і допомагає вирішити, що з ними робити далі.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 FINAL ============ -->
+<section class="sec sec--ink" id="final" aria-labelledby="fin-h">
+  <div class="wrap final">
+    <div>
+      <p class="eyebrow"><b>07</b>Розбір ситуації</p>
+      <h2 class="h2" id="fin-h">Ви вже вмієте заробляти. <span class="blue">Решту складемо в систему — разом з радником BRAVE</span></h2>
+      <p class="lead">Залиште заявку — менеджер BRAVE зв'яжеться з вами, уточнить запит і зручний час і запише на безкоштовний розбір з радником.</p>
+      <p class="final__alt">Ще не проходили оцінку? <a href="#quiz" data-quiz-start style="color:#fff">Почніть з неї — 2 хвилини</a>, і радник побачить ваші відповіді заздалегідь.</p>
+    </div>
+    <div class="formbox" data-form-slot="final" data-fid="fin"></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <div>
+      <img src="assets/brand/logo2-white.png" alt="BRAVE Capital" width="127" height="18" loading="lazy">
+      <p>BRAVE Capital — ательє персональних фінансів.</p>
+      <p>Інформація на сторінці не є індивідуальною інвестиційною рекомендацією. Історії клієнтів — індивідуальні результати; суми капіталу враховують нові внески.</p>
+    </div>
+    <p><a href="https://www.bravecapital.com.ua/">bravecapital.com.ua</a></p>
+  </div>
+</footer>
+
+<!-- sticky mobile CTA -->
+<div class="sticky" id="sticky"><a class="btn" href="#quiz" id="stickyBtn" data-quiz-start>Оцінити свої 4 компетенції · 2 хв</a></div>
+
+<!-- modal -->
+<div class="modal" id="leadModal" role="dialog" aria-modal="true" aria-labelledby="mTitle" aria-hidden="true">
+  <div class="sheet">
+    <button type="button" class="x" data-close aria-label="Закрити">×</button>
+    <h2 id="mTitle">Записатися на безкоштовний розбір</h2>
+    <p class="sub" id="mSub"></p>
+    <div data-form-slot="modal" data-fid="m"></div>
+  </div>
+</div>
+
+<!-- certificates lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Свідоцтво">
+  <button type="button" class="x" data-lb-close aria-label="Закрити" style="position:absolute;top:16px;right:16px">×</button>
+  <img id="lbImg" alt="">
+</div>
+
+<script src="assets/vendor/iti/build/js/intlTelInputWithUtils.min.js"></script>
+<script>
+(function(){
+"use strict";
+
+/* =========================================================
+   0. Налаштування
+   ========================================================= */
+var SUBMIT_URL = "/.netlify/functions/lead-submit"; // Netlify Function; секретний URL NetHunt зберігається лише на сервері
+var PIXEL_ID = "1669140901889164";   // піксель BRAVE (той самий, що на landing-A)
+var qs = new URLSearchParams(location.search);
+if (qs.get("review") === "1") document.documentElement.classList.add("review");
+// Локальне превʼю (localhost, файл) не шле подій у бойовий піксель. Для перевірки пікселя — ?pixel=1
+var IS_LOCAL = location.protocol === "file:" || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
+if (IS_LOCAL && qs.get("pixel") !== "1") PIXEL_ID = "";
+
+function $(s, el){ return (el || document).querySelector(s); }
+function $$(s, el){ return Array.prototype.slice.call((el || document).querySelectorAll(s)); }
+function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]; }); }
+
+/* =========================================================
+   1. Країна за IP (для коду телефону)
+   ========================================================= */
+var GEO_PROVIDERS = [
+  { url: "https://api.country.is/",                 pick: function(d){ return d.country; } },
+  { url: "https://ipwho.is/",                       pick: function(d){ return d.country_code; } },
+  { url: "https://get.geojs.io/v1/ip/country.json", pick: function(d){ return d.country; } },
+  { url: "https://ipapi.co/json/",                  pick: function(d){ return d.country_code; } }
+];
+var geoPromise = null;
+function fetchJson(url, ms){
+  var ctrl = new AbortController(), t = setTimeout(function(){ ctrl.abort(); }, ms);
+  return fetch(url, {signal: ctrl.signal}).then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); }).finally(function(){ clearTimeout(t); });
+}
+// повертає iso (напр. "ua") або null, якщо жоден сервіс не відповів
+function lookupCountry(){
+  if (geoPromise) return geoPromise;
+  var cached = null; try{ cached = localStorage.getItem("brave_iso"); }catch(e){}
+  if (cached){ geoPromise = Promise.resolve(cached); return geoPromise; }
+  geoPromise = (async function(){
+    for (var i = 0; i < GEO_PROVIDERS.length; i++){
+      try{
+        var d = await fetchJson(GEO_PROVIDERS[i].url, 3500), cc = GEO_PROVIDERS[i].pick(d);
+        if (cc && /^[a-z]{2}$/i.test(cc)){ var iso = cc.toLowerCase(); try{ localStorage.setItem("brave_iso", iso); }catch(e){} return iso; }
+      }catch(e){ /* сервіс не відповів — пробуємо наступний */ }
+    }
+    return null;
+  })();
+  return geoPromise;
+}
+
+/* =========================================================
+   2. Meta Pixel і події — вантажиться одразу для всіх
+   ========================================================= */
+function loadPixel(){
+  if (window.fbq || !PIXEL_ID) return;
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  window.fbq('init', PIXEL_ID);
+  window.fbq('track', 'PageView');
+}
+// У Meta — лише назви подій і джерело заявки. Жодних відповідей квізу чи рівнів.
+function track(ev, p){
+  var payload = Object.assign({event: ev}, p || {});
+  (window.dataLayer = window.dataLayer || []).push(payload);
+  if (typeof window.fbq === "function"){
+    if (ev === "lead_submit") window.fbq("track", "Lead", {content_name: payload.source, content_category: "landing_4k"}, {eventID: payload.event_id});
+    else window.fbq("trackCustom", ev, {source: payload.source, step: payload.step, cta: payload.cta});
+  }
+  if (window.console) console.info("[track]", ev, payload);
+}
+loadPixel();
+
+/* =========================================================
+   3. ОЦІНКА 4 КОМПЕТЕНЦІЙ — дані (єдине джерело правди)
+   s — прихований бал 0–100 для компетенції питання; tag — тип перекосу.
+   ========================================================= */
+var COMP = {
+  earn:{name:"Заробляти", noun:"дохід"}, spend:{name:"Витрачати", noun:"витрати"},
+  save:{name:"Накопичувати", noun:"накопичення"}, inv:{name:"Примножувати", noun:"інвестиції"}
+};
+var ORDER = ["earn","spend","save","inv"];
+var Q = [
+  {id:"q1", comp:null, label:"Про вас", text:"Звідки у вас основний дохід?", opts:[
+    {id:"ctx_business", t:"Власний бізнес"},
+    {id:"ctx_employed", t:"Робота в найманні: керівна чи експертна роль"},
+    {id:"ctx_practice", t:"Власна практика, фриланс чи особистий бренд"},
+    {id:"ctx_multi",    t:"Кілька джерел одночасно"}]},
+  {id:"q2", comp:"earn", text:"Як би ви описали свій дохід зараз?", opts:[
+    {id:"e_grow",     t:"Стабільно росте, і я розумію, за рахунок чого", s:100},
+    {id:"e_stable",   t:"Стабільний, і мене це влаштовує", s:80},
+    {id:"e_ceiling",  t:"Добрий, але відчуваю стелю", s:55, tag:"earn_ceiling"},
+    {id:"e_overload", t:"Тримається на мені: працюю на межі сил", s:45, tag:"earn_overload"},
+    {id:"e_volatile", t:"Нерівний: то густо, то пусто", s:40, tag:"earn_volatile"}]},
+  {id:"q3", comp:"earn", text:"Чи знаєте ви, скільки особисто заробили за останні три місяці?", opts:[
+    {id:"e_exact",     t:"Так, з точністю до сотні", s:100},
+    {id:"e_approx",    t:"Приблизно", s:65},
+    {id:"e_mixed",     t:"Ні: особисті гроші змішані з бізнесовими", s:30, tag:"mixed"},
+    {id:"e_scattered", t:"Ні: доходи з різних джерел, і я не зводжу їх разом", s:40, tag:"scattered"}]},
+  {id:"q4", comp:"spend", text:"Наприкінці місяця ви знаєте, куди пішли гроші?", opts:[
+    {id:"s_cat",      t:"Так, бачу по категоріях", s:100},
+    {id:"s_general",  t:"Загалом так, без деталей", s:70},
+    {id:"s_dissolve", t:"Ні, гроші ніби розчиняються", s:25, tag:"spend_leak"},
+    {id:"s_tried",    t:"Пробували вести облік — і закинули", s:40, tag:"spend_leak"}]},
+  {id:"q5", comp:"spend", text:"Коли хочеться великої покупки — авто, ремонту, подорожі, — як ви вирішуєте?", opts:[
+    {id:"s_know",   t:"Знаю суму, яку можу витратити без шкоди планам", s:100},
+    {id:"s_feel",   t:"Вирішую за відчуттям", s:60},
+    {id:"s_doubt",  t:"Довго сумніваюся, чи можу собі це дозволити", s:40, tag:"spend_restrict"},
+    {id:"s_borrow", t:"Купую, а потім доводиться брати з відкладеного", s:30, tag:"spend_leak"}]},
+  {id:"q6", comp:"save", text:"Якщо дохід раптом зупиниться, на скільки вистачить відкладених грошей?", opts:[
+    {id:"n_lt1",      t:"Менше ніж на місяць", s:10, tag:"save_low"},
+    {id:"n_1_3",      t:"На 1–3 місяці", s:40, tag:"save_low"},
+    {id:"n_3_12",     t:"На 3–12 місяців", s:85},
+    {id:"n_gt12",     t:"Більше ніж на рік", s:90},
+    {id:"n_business", t:"Важко сказати: усе в бізнесі чи в обороті", s:25, tag:"save_business"}]},
+  {id:"q7", comp:"save", text:"Як у вас відкладаються гроші?", opts:[
+    {id:"n_rule",   t:"Регулярно, за правилом і під конкретні цілі", s:100},
+    {id:"n_left",   t:"Відкладаю те, що лишається наприкінці місяця", s:55},
+    {id:"n_little", t:"Майже нічого не лишається", s:20, tag:"save_low"},
+    {id:"n_idle",   t:"Відкладено чимало, але гроші просто лежать", s:60, tag:"save_idle"},
+    {id:"n_back",   t:"Вільні гроші здебільшого йдуть назад у бізнес", s:35, tag:"save_business"}]},
+  {id:"q8", comp:"inv", text:"Що зараз з вашими інвестиціями?", opts:[
+    {id:"i_none",  t:"Ще не інвестую", s:15, tag:"inv_none"},
+    {id:"i_diy",   t:"Інвестую самостійно, без чіткого плану", s:40, tag:"inv_diy"},
+    {id:"i_minus", t:"Були спроби, але зараз у мінусі або все закинуто", s:25, tag:"inv_minus"},
+    {id:"i_frag",  t:"Є різні інструменти, але немає однієї стратегії", s:50, tag:"inv_frag"},
+    {id:"i_plan",  t:"Інвестую регулярно, за планом під свої цілі", s:95}]},
+  {id:"q9", comp:"inv", text:"Що найбільше заважає інвестувати впевненіше?", opts:[
+    {id:"b_start",   t:"Не розумію, з чого почати", s:30},
+    {id:"b_more",    t:"Здається, для цього потрібно більше грошей", s:30},
+    {id:"b_time",    t:"Немає часу в цьому розбиратися", s:40},
+    {id:"b_fear",    t:"Боюся помилитися і втратити гроші", s:35},
+    {id:"b_alone",   t:"Немає з ким порадитися, а вирішувати наодинці важко", s:40},
+    {id:"b_nothing", t:"Нічого не заважає", s:95}]},
+  {id:"q10", comp:null, label:"Ваші цілі", multi:2, text:"Що для вас найважливіше на найближчий рік?", hint:"Оберіть одну або дві цілі", opts:[
+    {id:"g_clarity",   t:"Зрозуміти, де гроші й куди вони йдуть"},
+    {id:"g_reserve",   t:"Резерв для родини"},
+    {id:"g_invest",    t:"Почати інвестувати або навести лад в інвестиціях"},
+    {id:"g_purchase",  t:"Велика покупка: житло, авто"},
+    {id:"g_kids",      t:"Гроші на навчання й майбутнє дітей"},
+    {id:"g_beyond",    t:"Гроші, які не залежать від одного бізнесу чи роботи"},
+    {id:"g_income",    t:"Більший дохід — і розуміння, навіщо"},
+    {id:"g_countries", t:"Фінанси між країнами й валютами"}]}
+];
+var LEVEL = {strong:"Сильна сторона", base:"Є база", growth:"Зона росту"};
+function levelOf(sc){ return sc >= 75 ? "strong" : sc >= 50 ? "base" : "growth"; }
+var LEVEL_DESC = {
+  earn:{strong:"Дохід стабільний і зрозумілий.", base:"Дохід добрий, але його варто зробити прогнозованішим.", growth:"Дохід потребує уваги: стабільності або ясності, скільки з нього ваше."},
+  spend:{strong:"Ви знаєте, куди йдуть гроші, і витрачаєте впевнено.", base:"Загальна картина є, але бракує чіткого правила «скільки можна».", growth:"Гроші розходяться без правила — або ви зайвий раз собі відмовляєте."},
+  save:{strong:"Є резерв і відкладення з правилами.", base:"Відкладення є, але без чітких ролей.", growth:"Резерву й грошей під цілі поки замало або вони без ролі."},
+  inv:{strong:"Інвестиції регулярні й під ваші цілі.", base:"Інвестиції є, але без цілісного плану.", growth:"Вільні гроші поки не працюють за планом."}
+};
+var CTX_PHRASE = {ctx_business:"ваш бізнес дає добрий дохід", ctx_employed:"ви добре заробляєте на своїй позиції", ctx_practice:"ваша справа дає добрий дохід", ctx_multi:"у вас кілька джерел доходу"};
+var STRONG_PHRASE = {
+  strong:{spend:"ви знаєте, куди йдуть гроші, і витрачаєте впевнено", save:"у вас є резерв і відкладення з правилами", inv:"ви вже інвестуєте регулярно й за планом"},
+  base:{spend:"ви загалом розумієте, куди йдуть гроші", save:"у вас уже є відкладені гроші", inv:"ви вже інвестуєте"}
+};
+var SKEW_MAIN = {
+  spend_leak:"Найбільше уваги зараз потребують витрати: гроші розходяться непомітно, і в кінці місяця важко сказати, куди.",
+  spend_restrict:"Найбільше уваги зараз потребують витрати — і не тому, що ви витрачаєте забагато. Бракує правила «скільки можна», тому кожна велика покупка дається через сумнів.",
+  save_low:"Найбільше уваги зараз потребують накопичення: після всіх витрат лишається замало, щоб спокійно планувати резерв і цілі.",
+  save_business:"Найбільше уваги зараз потребують накопичення: вільні гроші йдуть назад у бізнес, а окремих грошей родини поза ним майже немає.",
+  save_idle:"Найбільше уваги зараз потребують накопичення: відкладено чимало, але гроші просто лежать і не мають чіткої ролі.",
+  inv_none:"Найбільше уваги зараз потребує примножування: ви ще не інвестуєте{B}.",
+  inv_diy:"Найбільше уваги зараз потребує примножування: ви інвестуєте самостійно, але без цілісного плану під ваші цілі.",
+  inv_minus:"Найбільше уваги зараз потребує примножування: попередні спроби інвестувати не принесли спокою, і незрозуміло, що робити з тим, що вже є.",
+  inv_frag:"Найбільше уваги зараз потребує примножування: інструменти є, але вони не складаються в одну стратегію.",
+  earn_ceiling:"Найбільше уваги зараз потребує дохід: він добрий, але ви відчуваєте стелю і не бачите, за рахунок чого рости.",
+  earn_overload:"Найбільше уваги зараз потребує дохід: він тримається на ваших силах, і на це йде забагато енергії.",
+  earn_volatile:"Найбільше уваги зараз потребує дохід: він нерівний, тому важко планувати наперед.",
+  mixed:"Найбільше уваги зараз потребує дохід: особисті гроші змішані з бізнесовими, і важко сказати, скільки ви заробляєте насправді.",
+  scattered:"Найбільше уваги зараз потребує дохід: він приходить з різних джерел, і їх ніхто не зводить разом.",
+  _spend:"Найбільше уваги зараз потребують витрати: бракує правила, скільки йде на життя, а скільки — на резерв і цілі.",
+  _save:"Найбільше уваги зараз потребують накопичення: у відкладених грошей поки немає чітких ролей.",
+  _inv:"Найбільше уваги зараз потребує примножування: вільні гроші поки не мають плану.",
+  _earn:"Найбільше уваги зараз потребує дохід: його варто зробити прогнозованішим."
+};
+var BARRIER = {b_start:" — і незрозуміло, з чого почати", b_more:" — здається, що для цього потрібно більше грошей", b_time:" — немає часу в цьому розбиратися", b_fear:" — страшно помилитися", b_alone:" — і немає з ким порадитися", b_nothing:""};
+var SKEW_SHORT = {
+  spend_leak:"гроші розходяться непомітно", spend_restrict:"немає суми, яку можна витратити спокійно",
+  save_low:"після витрат лишається замало", save_business:"вільні гроші йдуть назад у бізнес", save_idle:"відкладене просто лежить",
+  inv_none:"інвестицій поки немає", inv_diy:"інвестиції без чіткого плану", inv_minus:"попередні спроби інвестувати не принесли спокою", inv_frag:"інструменти не складаються в одну стратегію",
+  earn_ceiling:"дохід уперся в стелю", earn_overload:"дохід тримається на ваших силах", earn_volatile:"дохід нерівний",
+  mixed:"особисте змішане з бізнесовим", scattered:"доходи з різних джерел не зведені разом",
+  _spend:"немає правила витрат", _save:"накопичення без ролей", _inv:"інвестиції без плану", _earn:"дохід непрогнозований"
+};
+var GOAL = {g_clarity:"ясність у грошах", g_reserve:"резерв для родини", g_invest:"інвестиції за планом", g_purchase:"велика покупка", g_kids:"гроші на майбутнє дітей", g_beyond:"опора поза одним джерелом доходу", g_income:"більший дохід", g_countries:"порядок у фінансах між країнами"};
+var HELP = {
+  spend_leak:["Правило розподілу доходу","Скільки йде на життя, резерв і цілі. Облік веде радник, а ви раз на місяць бачите одну сторінку з підсумком."],
+  spend_restrict:["Правило «скільки можна»","Сума на життя й бажання, яку можна витрачати спокійно, бо плани від цього не постраждають."],
+  save_low:["Гроші, що лишаються щомісяця","Знайдемо, звідки взяти гроші на резерв і цілі, не урізаючи життя."],
+  save_business:["Зарплата собі й правило виплат","Фіксована сума для вас і родини та правило, яка частина прибутку лишається поза бізнесом."],
+  save_idle:["Роль для кожних відкладених грошей","Скільки лишити в резерві, що відкласти під цілі, а що може працювати."],
+  inv_none:["Перший крок під ваш ризик","Поступово, з сум, які не страшно, і з поясненням кожного рішення. Рішення ухвалюєте ви."],
+  inv_diy:["Перегляд того, що вже є","Що лишити, що прибрати і як вирівняти інвестиції під ваші цілі та готовність до ризику."],
+  inv_minus:["Перегляд того, що вже є","Що лишити, що прибрати і як вирівняти інвестиції під ваші цілі та готовність до ризику."],
+  inv_frag:["Одна стратегія замість окремих інструментів","Усе, що вже є, зводимо в один план під ваші цілі."],
+  earn_ceiling:["Цілі, прив'язані до життя","Житло, авто, діти, свобода — у цифрах і датах. Стає зрозуміло, навіщо рости і на чому зосередитися."],
+  earn_overload:["Рутина — на раднику","Облік, звіти й нагадування веде радник. Ваша увага звільняється для головного."],
+  earn_volatile:["Резерв під нерівний дохід","Скільки тримати, щоб слабкий місяць не бив по родині, і як спокійно жити з нерівним доходом."],
+  mixed:["Повна картина грошей","Особисте й бізнесове розділені, усі рахунки й потоки — на одній сторінці."],
+  scattered:["Усі джерела — в одній системі","Доходи з різних джерел зводяться разом, і видно, скільки ви заробляєте насправді."],
+  support:["Людина для фінансових рішень","Радник на зв'язку між зустрічами: будь-яке рішення можна спершу обговорити."],
+  rhythm:["Ритм, який тримає радник","Щомісяця — підсумок, щокварталу — план і факт. Система не розвалюється через місяць, як таблиці."],
+  picture:["Повна картина грошей","Усі рахунки, доходи, витрати й накопичення — на одній сторінці."],
+  goals:["Цілі, прив'язані до життя","Житло, авто, діти, свобода — у цифрах і датах. Стає зрозуміло, навіщо рости і на чому зосередитися."],
+  _spend:["Правило розподілу доходу","Скільки йде на життя, резерв і цілі — щомісяця, без щоденного обліку з вашого боку."],
+  _save:["Роль для кожних відкладених грошей","Скільки лишити в резерві, що відкласти під цілі, а що може працювати."],
+  _inv:["Перший крок під ваш ризик","Поступово, з сум, які не страшно, і з поясненням кожного рішення. Рішення ухвалюєте ви."],
+  _earn:["Цілі, прив'язані до життя","Житло, авто, діти, свобода — у цифрах і датах. Стає зрозуміло, навіщо рости."]
+};
+var AG_GOAL = {
+  g_clarity:["clarity","Де ваші гроші і куди вони йдуть","Зберемо всі рахунки, доходи й витрати в одну картину і знайдемо, де гроші розчиняються."],
+  g_reserve:["reserve","Резерв родини: скільки і де тримати","Порахуємо суму під ваші витрати і валюту, в якій живе родина."],
+  g_invest:["inv","З чого почати інвестувати — або що робити з тим, що вже є","Спершу ваші цілі й готовність до ризику, потім — інструменти."],
+  g_purchase:["purchase","Велика покупка без шкоди резерву","Скільки відкладати, звідки і до якої дати, щоб покупка не забрала подушку."],
+  g_kids:["kids","Гроші на навчання й майбутнє дітей","Яка сума потрібна, до якого року і як її збирати поступово."],
+  g_beyond:["beyond","Гроші, які не залежать від одного джерела","Яку частину доходу щомісяця відкладати поза бізнес чи роботу і з чого почати."],
+  g_income:["income","Навіщо і за рахунок чого рости","Прив'яжемо дохід до ваших цілей у цифрах і подивимося, що зараз забирає увагу."],
+  g_countries:["countries","Фінанси між країнами й валютами","Як звести рахунки й валюти в одну систему. Податки — разом з вашими місцевими фахівцями."]
+};
+var AG_SKEW = {
+  spend_leak:["spend","Куди йдуть гроші щомісяця","Подивимося на витрати по категоріях і знайдемо, де гроші розчиняються."],
+  spend_restrict:["spend","Ваше правило «скільки можна»","Порахуємо суму на життя й бажання, яку можна витрачати спокійно."],
+  save_low:["save","Звідки взяти гроші на резерв і цілі","Знайдемо, яку частину доходу можна відкладати, не урізаючи життя."],
+  save_business:["save","Скільки бізнес може платити вам","Зарплата власника і правило, яка частина прибутку лишається поза бізнесом."],
+  save_idle:["save","Що робити з відкладеними грошима","Скільки лишити в резерві, що відкласти під цілі, а що може працювати."],
+  inv_none:["inv","Перший крок в інвестиціях під ваш ризик","З яких сум почати і як зрозуміти свою готовність до ризику."],
+  inv_diy:["inv","Ваші інвестиції: що лишити, що змінити","Перегляд того, що вже є, під ваші цілі й готовність до ризику."],
+  inv_minus:["inv","Ваші інвестиції: що лишити, що змінити","Перегляд того, що вже є, під ваші цілі й готовність до ризику."],
+  inv_frag:["inv","Одна стратегія замість окремих інструментів","Як звести все, що вже є, в один план."],
+  earn_ceiling:["income","Навіщо і за рахунок чого рости","Прив'яжемо дохід до ваших цілей у цифрах і подивимося, що зараз забирає увагу."],
+  earn_overload:["income","Що забирає вашу увагу","Які фінансові задачі можна зняти з вас, щоб звільнити сили на головне."],
+  earn_volatile:["reserve","Резерв під нерівний дохід","Скільки тримати, щоб слабкий місяць не бив по родині."],
+  mixed:["clarity","Як розділити особисте й бізнесове","Окремі рахунки, зарплата собі і правило виплат."],
+  scattered:["clarity","Усі джерела доходу — разом","Зведемо доходи з різних джерел і побачимо, скільки ви заробляєте насправді."],
+  _allstrong:["system","Як утримати систему без вашої щоденної уваги","Ритм, звітність і великі цілі на кілька років уперед."],
+  _filler:["system","Як може виглядати ваша система з радником BRAVE","Формат роботи й перші кроки на найближчий місяць."]
+};
+// Історії — повністю знеособлені: лише роль і ситуація
+var STORIES = {
+  family:{who:"Подружжя, власники франшизи",
+    a:"Дохід родини — 37 000 € на місяць, але гроші бізнесу й особисті змішані, зарплати собі власники не платили, інвестиції без логіки.",
+    aq:"«Ми працюємо більше, ніж будь-коли… але не розуміємо, де наші гроші»",
+    b:"За 1,5 місяця: рахунки розділені, зарплата власникам — від 25 000 € щомісяця, бюджет родини веде радник, інвестиції перебудовано.",
+    bq:"«Ми знаємо, де наші гроші»"},
+  it:{who:"IT-керівник",
+    a:"Дохід 7 300 $, витрати 6 850 $ — щомісяця лишалося 450 $. Інвестував сам і купив на піку: портфель у мінусі.", aq:"",
+    b:"Через рік лишається 1 800 $ щомісяця — учетверо більше. Інвестиції перебудовано під цілі й ризик, капітал 81 → 114 тис. $*.",
+    bq:"«Я можу бути дорогим і давати результат»"},
+  dmytro:{who:"Тімлід і власник спортзалу",
+    a:"Дохід 7 000 $, відкладено 60 тис. $, але витрати скачуть від 2 до 4 тис. $, інвестицій немає.", aq:"«Чи можу я собі дозволити?»",
+    b:"Через 11 місяців: витрати близько 5 000 $ — свідомо, регулярні інвестиції, капітал 101 тис. $*.",
+    bq:"«Я можу собі дозволити. Питання — чи це раціонально»"},
+  sasha:{who:"Власниця маркетингової агенції",
+    a:"Дохід 4 500 $, капітал 94 тис. $ здебільшого лежить у подушці. Реальної суми вільних грошей не видно.",
+    aq:"«Всі інвестують, а я ні… Можливо, інвестиції — тільки для тих, у кого надлишок доходів?»",
+    b:"Через рік: 800 $ щомісяця в інвестиції, капітал 143 тис. $*, дохід 7–7,5 тис. $.",
+    bq:"«Якщо не вийде — знайдемо новий шлях»"},
+  kyrylo:{who:"Девелопер",
+    a:"Дохід 4 500 $, криптовалюта в мінусі. Працював «по інерції» і не бачив, навіщо заробляти більше.", aq:"",
+    b:"Цілі прив'язали до життя. Дохід 9–10 тис. $, 500 $ щомісяця в інвестиції, витрати свідомо зросли з 3 до 6–7 тис. $ — без почуття провини.", bq:""}
+};
+var STORY_BY_SKEW = {
+  spend_leak:"it", save_low:"it", inv_minus:"it", inv_diy:"it", earn_overload:"it",
+  spend_restrict:"dmytro", scattered:"dmytro", save_idle:"sasha",
+  inv_frag:"family", save_business:"family", mixed:"family",
+  earn_ceiling:"kyrylo", earn_volatile:"kyrylo",
+  _spend:"dmytro", _save:"it", _inv:"sasha", _earn:"kyrylo"
+};
+var TESTS = {
+  sasha:  {q1:"ctx_business",q2:"e_stable",q3:"e_approx",q4:"s_general",q5:"s_doubt",q6:"n_gt12",q7:"n_idle",q8:"i_none",q9:"b_more",q10:["g_invest","g_purchase"]},
+  it:     {q1:"ctx_employed",q2:"e_overload",q3:"e_exact",q4:"s_dissolve",q5:"s_borrow",q6:"n_1_3",q7:"n_little",q8:"i_minus",q9:"b_time",q10:["g_purchase","g_reserve"]},
+  family: {q1:"ctx_business",q2:"e_overload",q3:"e_mixed",q4:"s_dissolve",q5:"s_feel",q6:"n_business",q7:"n_back",q8:"i_frag",q9:"b_time",q10:["g_clarity","g_beyond"]},
+  dmytro: {q1:"ctx_multi",q2:"e_ceiling",q3:"e_approx",q4:"s_tried",q5:"s_doubt",q6:"n_gt12",q7:"n_rule",q8:"i_frag",q9:"b_alone",q10:["g_purchase","g_income"]},
+  kyrylo: {q1:"ctx_business",q2:"e_ceiling",q3:"e_approx",q4:"s_general",q5:"s_know",q6:"n_3_12",q7:"n_left",q8:"i_diy",q9:"b_nothing",q10:["g_income"]},
+  strong: {q1:"ctx_employed",q2:"e_grow",q3:"e_exact",q4:"s_cat",q5:"s_know",q6:"n_3_12",q7:"n_rule",q8:"i_plan",q9:"b_nothing",q10:["g_kids","g_beyond"]}
+};
+
+/* =========================================================
+   4. ОЦІНКА — логіка
+   ========================================================= */
+function opt(qid, oid){
+  var q = Q.filter(function(x){ return x.id === qid; })[0];
+  return q ? q.opts.filter(function(o){ return o.id === oid; })[0] : null;
+}
+function cap(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
+function evaluate(ans){
+  var scores = {}, skews = {};
+  ORDER.forEach(function(c){
+    var qs2 = Q.filter(function(q){ return q.comp === c; }), sum = 0, best = null;
+    qs2.forEach(function(q){
+      var o = opt(q.id, ans[q.id]); sum += o.s;
+      if (o.tag && (!best || o.s <= best.s)) best = {s:o.s, tag:o.tag};   // перекіс = відповідь з найнижчим балом; при рівних — пізніше питання
+    });
+    scores[c] = Math.round(sum / qs2.length * 10) / 10;
+    if (c === "earn") scores[c] = Math.max(scores[c], 50);   // заробіток не нижче «Є база»: проблеми доходу — через перекіс у резюме
+    skews[c] = best ? best.tag : "_" + c;
+  });
+  var levels = {}; ORDER.forEach(function(c){ levels[c] = levelOf(scores[c]); });
+  var weakOrder = ["inv","save","spend","earn"], strongOrder = ["earn","spend","save","inv"];
+  function byWeak(a, b){ return scores[a] - scores[b] || weakOrder.indexOf(a) - weakOrder.indexOf(b); }
+  var weakest = weakOrder.slice().sort(byWeak)[0];
+  var second = weakOrder.filter(function(c){ return c !== weakest; }).sort(byWeak)[0];
+  var strongest = strongOrder.slice().sort(function(a, b){ return scores[b] - scores[a] || strongOrder.indexOf(a) - strongOrder.indexOf(b); })[0];
+  var minS = Math.min.apply(null, ORDER.map(function(c){ return scores[c]; })), maxS = scores[strongest];
+  var allStrong = minS >= 75;
+  var flags = {bigCushion: ans.q6 === "n_gt12", idle: ans.q7 === "n_idle", support: ans.q9 === "b_alone", barrier: ans.q9};
+  var goals = ans.q10 || [], ctx = ans.q1, wSkew = skews[weakest], sSkew = skews[second];
+
+  var p = [];
+  if (allStrong){
+    p.push("У вас сильна база в усіх чотирьох компетенціях — таке нечасто буває навіть за високого доходу.");
+    p.push("Наступний крок — щоб система трималася без вашої щоденної уваги і працювала на великі цілі.");
+  } else {
+    if (maxS < 50) p.push(cap(CTX_PHRASE[ctx]) + " — і це основа, навколо якої можна вибудувати систему.");
+    else if (strongest === "earn") p.push((levels.earn === "strong" ? "Заробляти — ваша сильна сторона: " : "Найкраще у вас зараз із заробітком: ") + CTX_PHRASE[ctx] + ".");
+    else {
+      var sp = (strongest === "save" && flags.idle) ? "у вас уже є чималі відкладення" : STRONG_PHRASE[levels[strongest]][strongest];
+      p.push((levels[strongest] === "strong" ? "Ваша сильна сторона — компетенція «" : "Найкраще у вас зараз із компетенцією «") + COMP[strongest].name + "»: " + sp + ".");
+    }
+    var main = SKEW_MAIN[wSkew];
+    if (wSkew === "inv_none"){
+      main = main.replace("{B}", BARRIER[flags.barrier] || "");
+      if (flags.bigCushion || flags.idle) main += " Водночас відкладені гроші вже є — і вони могли б працювати.";
+    }
+    if (scores[second] < 50) main += " Друга зона росту — " + COMP[second].noun + ": " + SKEW_SHORT[sSkew] + ".";
+    p.push(main);
+    p.push(weakest === "earn"
+      ? "Коли з грошима порядок, а цілі зрозумілі в цифрах, увага повертається до роботи — і з'являються сили рости."
+      : "Це типова ситуація для людей з добрим доходом: заробляти вчить робота, а розпоряджатися заробленим — ніхто.");
+  }
+  if (goals.length){
+    var g = goals.map(function(x){ return GOAL[x]; });
+    p.push(goals.length === 1 ? "Ваша ціль на найближчий рік — " + g[0] + ". З неї радник і почне розмову."
+                              : "Ваші цілі на найближчий рік — " + g[0] + " і " + g[1] + ". З них радник і почне розмову.");
+  }
+  var helpKeys = [];
+  function addH(k){ if (!HELP[k]) return; var t = HELP[k][0]; if (helpKeys.every(function(x){ return HELP[x][0] !== t; })) helpKeys.push(k); }
+  if (allStrong){ addH("rhythm"); addH("goals"); addH("support"); }
+  else { addH(wSkew); addH(sSkew); addH(flags.support ? "support" : "rhythm"); addH("picture"); addH("rhythm"); addH("support"); }
+  helpKeys = helpKeys.slice(0, 3);
+  var story;
+  if (allStrong) story = ctx === "ctx_business" ? "family" : "it";
+  else if (wSkew === "inv_none") story = (flags.barrier === "b_more" || flags.idle || flags.bigCushion) ? "sasha" : "dmytro";
+  else story = STORY_BY_SKEW[wSkew] || "it";
+  var agenda = [], groups = [];
+  function addA(item){ if (item && groups.indexOf(item[0]) < 0){ groups.push(item[0]); agenda.push({title:item[1], detail:item[2]}); } }
+  goals.forEach(function(x){ addA(AG_GOAL[x]); });
+  if (allStrong) addA(AG_SKEW._allstrong);
+  addA(AG_SKEW[wSkew]); addA(AG_SKEW[sSkew]); addA(AG_SKEW._filler); addA(AG_SKEW._allstrong);
+  agenda = agenda.slice(0, 3);
+  return {scores:scores, levels:levels, skews:skews, weakest:weakest, second:second, strongest:strongest, allStrong:allStrong,
+          flags:flags, goals:goals, ctx:ctx, summary:p, help:helpKeys.map(function(k){ return {title:HELP[k][0], text:HELP[k][1]}; }),
+          story:story, agenda:agenda};
+}
+
+/* =========================================================
+   5. ОЦІНКА — інтерфейс
+   ========================================================= */
+var ans = {}, idx = 0, quizResult = null, quizStarted = false;
+var prog = $("#prog");
+for (var i = 0; i < Q.length; i++) prog.appendChild(document.createElement("i"));
+
+function startQuiz(){
+  if (!quizStarted){ quizStarted = true; track("quiz_start"); }
+  $("#intro").hidden = true; $("#steps").hidden = false;
+  if (!quizResult) go(Math.min(idx, Q.length - 1), true);
+}
+function renderStep(){
+  var q = Q[idx], el = $("#step"), chosen = ans[q.id], multi = !!q.multi;
+  $$("#prog i").forEach(function(b, k){ b.classList.toggle("on", k <= idx); });
+  var html = '<div class="fade"><div class="step-meta"><span>Питання ' + (idx + 1) + ' з ' + Q.length + '</span><span class="comp-chip">' + (q.comp ? COMP[q.comp].name : q.label) + '</span></div>'
+    + '<h3 class="q-text" id="qH" tabindex="-1">' + q.text + '</h3><p class="q-hint">' + (q.hint || "Оберіть один варіант") + '</p><ul class="opts" role="list">';
+  q.opts.forEach(function(o){
+    var on = multi ? (chosen || []).indexOf(o.id) > -1 : chosen === o.id;
+    var dis = multi && !on && (chosen || []).length >= q.multi;
+    html += '<li><button type="button" class="opt' + (multi ? ' opt--multi' : '') + '" data-o="' + o.id + '" aria-pressed="' + on + '"' + (dis ? ' aria-disabled="true"' : '') + '><span class="mark" aria-hidden="true"></span><span>' + o.t + '</span></button></li>';
+  });
+  html += '</ul><div class="q-nav">' + (idx > 0 ? '<button type="button" class="linkbtn" id="qBack">← Назад</button>' : '<span></span>')
+    + (multi ? '<button type="button" class="btn" id="qNext"' + ((chosen || []).length ? '' : ' disabled') + '>Показати результат <span aria-hidden="true">→</span></button>' : '') + '</div></div>';
+  el.innerHTML = html;
+  $$(".opt", el).forEach(function(b){
+    b.addEventListener("click", function(){
+      var oid = b.getAttribute("data-o");
+      if (multi){
+        var arr = (ans[q.id] || []).slice(), k = arr.indexOf(oid);
+        if (k > -1) arr.splice(k, 1); else if (arr.length < q.multi) arr.push(oid); else return;
+        ans[q.id] = arr; renderStep();
+        var f = $('.opt[data-o="' + oid + '"]'); if (f) f.focus();
+      } else {
+        ans[q.id] = oid;
+        $$(".opt", el).forEach(function(x){ x.setAttribute("aria-pressed", x === b); });
+        track("quiz_step", {step: idx + 1});
+        setTimeout(function(){ go(idx + 1); }, 220);
+      }
+    });
+  });
+  var back = $("#qBack"); if (back) back.addEventListener("click", function(){ go(idx - 1); });
+  var next = $("#qNext"); if (next) next.addEventListener("click", function(){ track("quiz_step", {step: idx + 1}); finishQuiz(); });
+}
+function go(n, noFocus){
+  if (n < 0) return;
+  if (n >= Q.length){ finishQuiz(); return; }
+  idx = n; renderStep();
+  if (!noFocus){ var h = $("#qH"); if (h) h.focus({preventScroll: true}); }
+  var box = $(".quiz").getBoundingClientRect();
+  if (box.top < 0 || box.top > innerHeight * 0.6) $(".quiz").scrollIntoView({block: "start"});
+}
+function finishQuiz(){
+  quizResult = evaluate(ans);
+  renderResult(quizResult);
+  document.body.classList.add("quiz-done");
+  $("#result").hidden = false;
+  $("#result").scrollIntoView({block: "start"});
+  $("#result").focus({preventScroll: true});
+  track("quiz_complete");
+  updateSticky();
+  if (document.documentElement.classList.contains("review")) console.info("[quiz review]", quizResult);
+}
+function renderResult(r){
+  $("#summary").innerHTML = r.summary.map(function(s){ return "<p>" + esc(s) + "</p>"; }).join("");
+  $("#levels").innerHTML = ORDER.map(function(c){
+    return '<div class="lvl" data-l="' + r.levels[c] + '"><p class="lvl__n">' + COMP[c].name + '</p><div class="lvl__bar" aria-hidden="true"><i></i><i></i><i></i></div><span class="lvl__w">' + LEVEL[r.levels[c]] + '</span></div>';
+  }).join("");
+  $("#help").innerHTML = r.help.map(function(h){ return "<li><b>" + esc(h.title) + "</b><span>" + esc(h.text) + "</span></li>"; }).join("");
+  var s = STORIES[r.story];
+  $("#story").innerHTML = '<p class="story__who">' + esc(s.who) + '</p><div class="ab"><div><small>Було</small><p>' + esc(s.a) + '</p>' + (s.aq ? '<q>' + esc(s.aq) + '</q>' : '') + '</div>'
+    + '<div><small>Стало</small><p>' + esc(s.b) + '</p>' + (s.bq ? '<q>' + esc(s.bq) + '</q>' : '') + '</div></div>';
+  $("#agenda").innerHTML = r.agenda.map(function(a, k){
+    return '<li><span class="n">0' + (k + 1) + '</span><b>' + esc(a.title) + '</b><span class="det" aria-hidden="true">' + esc(a.detail) + '</span></li>';
+  }).join("");
+}
+function quizPayload(){
+  if (!quizResult) return null;
+  var r = quizResult;
+  return {
+    answers: Object.keys(ans).reduce(function(o, k){
+      var q = Q.filter(function(x){ return x.id === k; })[0], v = ans[k];
+      o[k] = {question: q.text, answer: [].concat(v).map(function(id){ return opt(k, id).t; }).join("; "), id: v}; return o;
+    }, {}),
+    levels: ORDER.reduce(function(o, c){ o[COMP[c].name] = LEVEL[r.levels[c]]; return o; }, {}),
+    scores_hidden: r.scores, skews: r.skews, weakest: r.weakest, story: r.story,
+    summary: r.summary.join(" "), help: r.help.map(function(h){ return h.title; }), agenda: r.agenda
+  };
+}
+$("#qStart").addEventListener("click", startQuiz);
+$("#qAgain").addEventListener("click", function(){
+  ans = {}; idx = 0; quizResult = null; document.body.classList.remove("quiz-done");
+  $("#result").hidden = true; startQuiz(); go(0); $(".quiz").scrollIntoView({block: "start"}); updateSticky();
+});
+// будь-яка кнопка «Оцінити…» одразу відкриває перше питання
+$$("[data-quiz-start]").forEach(function(a){
+  a.addEventListener("click", function(e){
+    if (!a.hasAttribute("data-quiz-start")) return;   // липка кнопка після квізу відкриває форму (свій обробник)
+    e.preventDefault();
+    var t = a.getAttribute("data-track"); if (t) track("cta_click", {cta: t});
+    if (quizResult){ $("#result").scrollIntoView({block: "start"}); return; }
+    startQuiz(); $("#quiz").scrollIntoView({block: "start"});
+  });
+});
+
+/* =========================================================
+   6. Телефон (intl-tel-input, як на Lagoon): код країни за IP
+   ========================================================= */
+var itiUk = {}, itiMap = {};
+var i18nReady = import("./assets/vendor/iti/build/js/i18n/uk/index.js").then(function(m){ itiUk = m.default || {}; }).catch(function(){});
+function initPhone(input){
+  if (!input || !window.intlTelInput || itiMap[input.id]) return;
+  itiMap[input.id] = window.intlTelInput(input, {
+    initialCountry: "auto",
+    geoIpLookup: function(cb){ lookupCountry().then(function(iso){ cb(iso || "ua"); }); },
+    strictMode: true, countrySearch: true, separateDialCode: true,
+    countryOrder: ["ua","pl","de","es","cz","it","gb","us","ae"],
+    dropdownContainer: document.body, i18n: itiUk
+  });
+}
+
+/* =========================================================
+   7. Форми: модалка на кожен CTA + форма у фіналі
+   ========================================================= */
+function formHTML(fid){
+  return '<p class="attached">Ваші відповіді з оцінки додамо до заявки — радник підготується заздалегідь.</p>'
+    + '<form class="form" data-form novalidate>'
+    + '<div class="field"><label for="' + fid + '_name">Як до вас звертатися?</label><input class="input" id="' + fid + '_name" name="name" autocomplete="given-name"><p class="err" data-err="name">Напишіть, як до вас звертатися.</p></div>'
+    + '<div class="field"><label for="' + fid + '_phone">Номер телефону</label><input class="input" id="' + fid + '_phone" name="phone" type="tel" autocomplete="tel"><p class="err" data-err="phone">Перевірте номер: схоже, в ньому не вистачає цифр.</p></div>'
+    + '<div class="messenger-confirm" data-messenger-confirm><input class="messenger-confirm__input" id="' + fid + '_messenger" name="messenger_confirmed" type="checkbox" required><label for="' + fid + '_messenger">Підтверджую що за цим номером зареєстровано месенджер</label></div>'
+    + '<button type="submit" class="btn btn--block" data-submit aria-disabled="true">Записатися на розбір <span aria-hidden="true">→</span></button>'
+    + '<p class="form__submit-error" data-submit-error role="alert">Не вдалося надіслати заявку. Перевірте з\'єднання та спробуйте ще раз.</p>'
+    + '<p class="form__legal">Менеджер BRAVE зв\'яжеться з вами <span class="todo" title="ПІДТВЕРДИТИ SLA">протягом робочого дня</span>. Жодних розсилок. Ваші дані бачать лише менеджер і радник. Разом із заявкою фіксується IP-адреса для атрибуції та захисту від спаму.</p>'
+    + '</form><div class="form__ok" data-ok aria-live="polite"></div>';
+}
+$$("[data-form-slot]").forEach(function(slot){ slot.innerHTML = formHTML(slot.getAttribute("data-fid")); slot.querySelector("[data-form]").setAttribute("data-source", slot.getAttribute("data-form-slot")); });
+
+var CTX = {
+  def:{title:"Записатися на безкоштовний розбір", sub:"Менеджер BRAVE зв'яжеться з вами, уточнить запит і зручний час і запише на розбір з радником. Розбір — онлайн, 1-на-1, безкоштовно.", btn:"Записатися на розбір"},
+  done:{title:"Записатися на безкоштовний розбір", sub:"Менеджер BRAVE зв'яжеться з вами, уточнить запит і зручний час і запише на розбір з радником. Радник заздалегідь побачить ваші відповіді з оцінки — розмова почнеться не з нуля.", btn:"Записатися на розбір"}
+};
+var modal = $("#leadModal"), lastFocus = null, mSource = "modal";
+function openModal(source){
+  lastFocus = document.activeElement; mSource = source;
+  var c = quizResult ? CTX.done : CTX.def, f = modal.querySelector("[data-form]"), ok = modal.querySelector("[data-ok]");
+  $("#mTitle").textContent = c.title; $("#mSub").textContent = c.sub;
+  f.hidden = false; ok.classList.remove("show"); ok.innerHTML = "";
+  var submitError = f.querySelector("[data-submit-error]"); if (submitError) submitError.classList.remove("show");
+  f.querySelector("[data-submit]").innerHTML = c.btn + ' <span aria-hidden="true">→</span>';
+  modal.classList.add("open"); modal.setAttribute("aria-hidden", "false"); document.body.classList.add("modal-open");
+  setTimeout(function(){ $("#m_name").focus(); }, 60);
+  track("lead_form_open", {source: source});
+}
+function closeModal(){
+  modal.classList.remove("open"); modal.setAttribute("aria-hidden", "true"); document.body.classList.remove("modal-open");
+  if (lastFocus && lastFocus.focus) lastFocus.focus();
+}
+modal.addEventListener("click", function(e){ if (e.target === modal || e.target.hasAttribute("data-close")) closeModal(); });
+document.addEventListener("keydown", function(e){
+  if (e.key !== "Escape") return;
+  if (modal.classList.contains("open")) closeModal();
+  if ($("#lightbox").classList.contains("open")) closeLb();
+});
+$$("[data-lead]").forEach(function(b){ b.addEventListener("click", function(){ openModal(b.getAttribute("data-lead")); }); });
+
+function setErr(form, key, on){
+  var el = form.querySelector('[data-err="' + key + '"]'), inp = form.querySelector('[name="' + key + '"]');
+  if (el) el.classList.toggle("show", on); if (inp) inp.setAttribute("aria-invalid", String(on));
+}
+function validate(form){
+  var name = form.querySelector('[name="name"]'), phone = form.querySelector('[name="phone"]'), iti = itiMap[phone.id];
+  var okN = name.value.trim().length > 0;
+  var okP = iti ? (phone.value.trim() !== "" && iti.isValidNumber()) : phone.value.replace(/\D/g, "").length >= 9;
+  setErr(form, "name", !okN); setErr(form, "phone", !okP);
+  if (!okN){ name.focus(); return false; }
+  if (!okP){ phone.focus(); return false; }
+  return true;
+}
+function setMessengerAttention(form, on){
+  var box = form.querySelector("[data-messenger-confirm]");
+  var checkbox = form.querySelector('[name="messenger_confirmed"]');
+  if (box) box.classList.toggle("is-attention", on);
+  if (checkbox) checkbox.setAttribute("aria-invalid", String(on));
+}
+function syncMessengerButton(form){
+  var checkbox = form.querySelector('[name="messenger_confirmed"]');
+  var btn = form.querySelector("[data-submit]");
+  var confirmed = checkbox && checkbox.checked;
+  if (btn) btn.setAttribute("aria-disabled", String(!confirmed));
+  if (confirmed) setMessengerAttention(form, false);
+}
+var SOURCE_LABEL = {quiz_book:"форма під результатом оцінки", header:"кнопка в шапці", hero:"перший екран", final:"форма внизу сторінки", sticky:"липка кнопка на мобільному"};
+// Один текст для поля «коментар» у CRM: менеджер бачить запит, не розбираючи JSON
+function leadComment(lead){
+  var t = ["Джерело: " + (SOURCE_LABEL[lead.source] || lead.source)];
+  var q = lead.quiz;
+  if (!q){ t.push("Оцінку 4 компетенцій не проходив(-ла)."); return t.join("\n"); }
+  t.push("Рівні: " + Object.keys(q.levels).map(function(k){ return k + " — " + q.levels[k]; }).join("; "));
+  if (q.answers.q10) t.push("Цілі на рік: " + q.answers.q10.answer);
+  t.push("Що обговорити на розборі: " + q.agenda.map(function(a, i){ return (i + 1) + ") " + a.title; }).join("; "));
+  t.push("Резюме: " + q.summary);
+  return t.join("\n");
+}
+$$("[data-form]").forEach(function(form){
+  var messengerCheckbox = form.querySelector('[name="messenger_confirmed"]');
+  var submitButton = form.querySelector("[data-submit]");
+  syncMessengerButton(form);
+  messengerCheckbox.addEventListener("change", function(){ syncMessengerButton(form); });
+  submitButton.addEventListener("click", function(e){
+    if (messengerCheckbox.checked) return;
+    e.preventDefault();
+    setMessengerAttention(form, true);
+    messengerCheckbox.focus();
+  });
+  form.querySelector('[name="name"]').addEventListener("blur", function(){ if (this.value.trim()) setErr(form, "name", false); });
+  form.querySelector('[name="phone"]').addEventListener("blur", function(){ var iti = itiMap[this.id]; if (this.value.trim() && iti) setErr(form, "phone", !iti.isValidNumber()); });
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    if (!messengerCheckbox.checked){
+      setMessengerAttention(form, true);
+      syncMessengerButton(form);
+      messengerCheckbox.focus();
+      return;
+    }
+    if (!validate(form)) return;
+    var phone = form.querySelector('[name="phone"]'), iti = itiMap[phone.id];
+    var source = form.getAttribute("data-source") === "modal" ? mSource : form.getAttribute("data-source");
+    var quiz = quizPayload();
+    var lead = {
+      name: form.name.value.trim(),
+      phone: iti ? iti.getNumber() : phone.value.trim(),
+      phone_country: iti ? (iti.getSelectedCountryData().iso2 || null) : null,
+      source: source,
+      quiz: quiz, lead_tag: quiz ? "quiz" : "direct",
+      utm_source: qs.get("utm_source"), utm_medium: qs.get("utm_medium"), utm_campaign: qs.get("utm_campaign"), utm_content: qs.get("utm_content"), fbclid: qs.get("fbclid"),
+      page: location.pathname, ts: new Date().toISOString(),
+      event_id: "lead_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8)   // той самий ID іде в Meta Pixel (Lead) і в CRM
+    };
+    lead.comment = leadComment(lead);
+    var btn = form.querySelector('button[type="submit"]'); btn.disabled = true;
+    btn.setAttribute("aria-busy", "true");
+    var submitError = form.querySelector("[data-submit-error]");
+    if (submitError) submitError.classList.remove("show");
+    fetch(SUBMIT_URL, {
+      method: "POST",
+      credentials: "same-origin",
+      cache: "no-store",
+      headers: {"Content-Type": "application/json", "Accept": "application/json"},
+      body: JSON.stringify(lead)
+    }).then(function(response){
+      if (!response.ok) throw new Error("Lead endpoint returned " + response.status);
+      btn.disabled = false;
+      btn.removeAttribute("aria-busy");
+      if (IS_LOCAL){
+        window.__lastLead = lead;
+        if (window.console) console.info("[lead → CRM] delivered", lead);
+      }
+      track("lead_submit", {source: source, event_id: lead.event_id});
+      var ok = form.parentElement.querySelector("[data-ok]");
+      var first = 'Менеджер BRAVE зв\'яжеться з вами <span class="todo" title="ПІДТВЕРДИТИ SLA">протягом робочого дня</span>.';
+      var steps = "<li>менеджер уточнить ваш запит і зручний час, підбере радника;</li><li>ви отримаєте підтвердження дати й часу розбору;</li><li>радник онлайн, 1-на-1, розбереться у вашій ситуації" + (quiz ? " — уже знаючи ваші відповіді з оцінки" : "") + ".</li>";
+      ok.innerHTML = "<h3>Дякуємо, " + esc(lead.name) + "!</h3><p>" + first + "</p><p style=\"margin-top:14px;font-weight:600\">Що далі:</p><ul>" + steps + "</ul>";
+      form.hidden = true; ok.classList.add("show");
+    }).catch(function(error){
+      btn.disabled = false;
+      btn.removeAttribute("aria-busy");
+      if (submitError) submitError.classList.add("show");
+      if (IS_LOCAL && window.console) console.error("[lead → CRM] delivery failed", error);
+    });
+  });
+});
+i18nReady.then(function(){ $$('input[type="tel"]').forEach(initPhone); });
+
+/* =========================================================
+   8. Дрібниці: стіна клієнтів, свідоцтва, FAQ, липка кнопка, шапка, поява блоків
+   ========================================================= */
+// Клієнти з офіційного сайту (згода є). Клієнтів, чиї ситуації описані в історіях, тут немає — щоб їх не можна було зіставити.
+var WALL = [
+  ["artem-dovbyk","Артем Довбик","Гравець збірної України з футболу"],["mykhaylo-haychuk-ta-taras-drovorub","Михайло Гайчук та Тарас Дроворуб","Засновники GDC — консалтинг"],
+  ["illya-litun","Ілля Літун","Засновник · EdTech"],["yaroslav-kazo","Ярослав Казьо","Засновник · стоматологія"],["oleksiy-smokvyna","Олексій Смоквина","Засновник BERSERK"],
+  ["vitaliy-tretyak","Віталій Третяк","CEO Key2Biz · юридична компанія"],["yuliya-cheban","Юлія Чебан","Засновниця Cheban Agency"],["taras-tymofiychuk","Тарас Тимофійчук","Засновник DL · бренд одягу"],
+  ["andriy-tertyshnyk","Андрій Тертишник","Співвласник fint8 · фінансові директори для МСБ"],["stas-hulyayev","Стас Гуляєв","Засновник Life Craft · освіта"],["vasyl-prus","Василь Прус","Співвласник · AFA"],
+  ["robert-mytrychko","Роберт Митричко","Співзасновник Mytrychko Syma"],["ivan-druzyuk","Іван Друзюк","Засновник SHYSHKA TREES"],["maks-khalaberda","Макс Халаберда","Засновник Get Visa Agency"],
+  ["yukhym-konoplya","Юхим Конопля","Гравець збірної України з футболу"],["oleksandr-isayev","Олександр Ісаєв","Засновник Школи коучингу Phase 2.0"],["denys-volosov","Денис Волосов","Засновник Люди.Digital"],
+  ["andriy-senkiv","Андрій Сеньків","Засновник Elektra · електромобілі"],["mykola-ishchenko","Микола Іщенко","Співзасновник HireBox UA"],["oles-varenyk","Олесь Вареник","Президент Клубу Investhub"],
+  ["pavlo-ta-hanna-petryha","Павло та Ганна Петрига","Pálko design atelier"],["anna-vozna","Анна Возна","Неврологиня, авторка методу «Без тривоги»"],["ulyana-kashchiy","Уляна Кащій","Підприємиця у сфері медицини"],
+  ["artem-lyundovskyy","Артем Люндовський","Засновник M99 · відеопродакшн"],["andriy-smal","Андрій Смаль","Засновник ItUa · CRM/ERP/AI"],["ivan-pervoy","Іван Первой","Засновник середовища для підлітків"],
+  ["ira-vakhitova","Іра Вахітова","Співзасновниця New Look School"],["yuriy-hladkyy","Юрій Гладкий","Засновник агенції GRAPE"]
+];
+var wallHTML = WALL.map(function(w){ return '<figure><img src="assets/clients/' + w[0] + '.jpg" alt="" loading="lazy" width="150" height="180"><figcaption><b>' + esc(w[1]) + '</b>' + esc(w[2]) + '</figcaption></figure>'; }).join("");
+$("#wall").innerHTML = wallHTML + wallHTML.replace(/<figure>/g, '<figure aria-hidden="true">');
+
+var lb = $("#lightbox");
+function closeLb(){ lb.classList.remove("open"); }
+$$("[data-cert]").forEach(function(b){ b.addEventListener("click", function(){ $("#lbImg").src = b.getAttribute("data-cert"); $("#lbImg").alt = b.querySelector("img").alt; lb.classList.add("open"); }); });
+lb.addEventListener("click", function(e){ if (e.target === lb || e.target.hasAttribute("data-lb-close")) closeLb(); });
+
+// з резюме — одразу до форми заявки під результатом
+$("#toBook").addEventListener("click", function(e){
+  e.preventDefault();
+  var narrow = innerWidth < 860;   // на телефоні форма стоїть під кроками — ведемо одразу до неї
+  $(narrow ? "#quizBook .formbox" : "#quizBook").scrollIntoView({block: "start"});
+  if (!narrow) setTimeout(function(){ var n = $("#qz_name"); if (n) n.focus({preventScroll: true}); }, 450);
+});
+
+$$(".faq details").forEach(function(d){ d.addEventListener("toggle", function(){ if (d.open){ $$(".faq details").forEach(function(o){ if (o !== d) o.open = false; }); track("faq_open", {cta: d.querySelector("summary").textContent}); } }); });
+
+// липка кнопка на мобільному: ховаємо лише там, де вона заважає, — біля кнопки першого екрана, поки людина відповідає на квіз, і над формами заявки
+var sticky = $("#sticky"), stickyBtn = $("#stickyBtn");
+var stickyAvoid = {heroCta: $("#heroCta"), quiz: $(".quiz"), quizForm: $("#quizBook .formbox"), finalForm: $("#final .formbox")};
+function inView(el){ if (!el) return false; var r = el.getBoundingClientRect(); return r.height > 0 && r.bottom > 0 && r.top < innerHeight; }
+function updateSticky(){
+  if (!sticky) return;
+  if (quizResult){ stickyBtn.textContent = "Записатися на безкоштовний розбір"; stickyBtn.removeAttribute("data-quiz-start"); stickyBtn.setAttribute("href", "#final"); }
+  var hide = inView(stickyAvoid.heroCta) || (!quizResult && inView(stickyAvoid.quiz)) || inView(stickyAvoid.quizForm) || inView(stickyAvoid.finalForm);
+  sticky.classList.toggle("show", !hide && scrollY > 300);
+}
+stickyBtn.addEventListener("click", function(e){ if (quizResult){ e.preventDefault(); openModal("sticky"); } });
+if ("IntersectionObserver" in window){
+  var rv = new IntersectionObserver(function(entries){ entries.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add("in"); rv.unobserve(en.target); } }); }, {rootMargin: "0px 0px -8% 0px"});
+  $$(".rv").forEach(function(el){ rv.observe(el); });
+} else { $$(".rv").forEach(function(el){ el.classList.add("in"); }); }
+var hdr = $("#hdr");
+addEventListener("scroll", function(){ hdr.classList.toggle("scrolled", scrollY > 8); updateSticky(); }, {passive: true});
+addEventListener("resize", updateSticky, {passive: true});
+updateSticky();
+$$("[data-track]").forEach(function(a){ if (!a.hasAttribute("data-quiz-start")) a.addEventListener("click", function(){ track("cta_click", {cta: a.getAttribute("data-track")}); }); });
+
+// Наприкінці, коли все ініціалізовано. ?test=sasha|it|family|dmytro|kyrylo|strong — одразу показати результат профілю (для перевірки)
+var tp = qs.get("test");
+if (tp && TESTS[tp]){ ans = JSON.parse(JSON.stringify(TESTS[tp])); quizStarted = true; $("#intro").hidden = true; $("#steps").hidden = false; idx = Q.length - 1; renderStep(); finishQuiz(); }
+window.BRAVE = {Q: Q, evaluate: evaluate, TESTS: TESTS};
+})();
+</script>
+</body>
+</html>
