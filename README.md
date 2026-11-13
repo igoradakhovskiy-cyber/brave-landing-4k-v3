@@ -1,6 +1,8 @@
 # BRAVE 4K — версія 3 (нова воронка, 13.11.2026)
 
-Основа — бойовий сайт https://bravecapitalform4k.netlify.app/ у тому вигляді, як він працює зараз (Netlify Function `lead-submit` → NetHunt, галочка про месенджер). Перший коміт у цій папці — точна копія бойового сайту, далі — лише зміни нової воронки. Що саме змінилося: `git diff 744f88c`.
+Основа — бойовий сайт https://bravecapitalform4k.netlify.app/ у тому вигляді, як він працює зараз (Netlify Function `lead-submit` → NetHunt, галочка про месенджер).
+
+**Для викладки змінюється лише `index.html`.** Папка `assets`, функція `lead-submit`, `SUBMIT_URL` і налаштування Netlify — без змін.
 
 ## Що змінилося для відвідувача
 
