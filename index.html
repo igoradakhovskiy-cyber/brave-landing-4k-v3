@@ -318,6 +318,11 @@ body.quiz-done [data-money]{display:none}
 .ok-tg .form__tg-note{text-align:left;margin-top:10px}
 .ok-when{color:var(--blue);font-weight:600}
 .form__ok .ok-later{font-size:14.5px;margin-top:14px}
+/* коротка форма «контакти → Telegram» (липка кнопка на мобільному): без вибору часу й звичайної кнопки */
+.form[data-mode="tg"] [data-slot-field],.form[data-mode="tg"] [data-submit],.form[data-mode="tg"] .form__or,.form[data-mode="tg"] [data-legal-slot]{display:none}
+.form[data-mode="tg"] [data-submit-tg],.form[data-mode="tg"] [data-submit-tg]:hover{background:#1A7FC1;color:#fff;box-shadow:none}
+.form[data-mode="tg"] [data-submit-tg][aria-disabled="true"]{background:#1A7FC1}
+.sticky .btn--tg-fill{box-shadow:0 10px 30px rgba(26,127,193,.4)}
 
 /* modal */
 .modal{position:fixed;inset:0;z-index:70;display:none;align-items:flex-end;justify-content:center;background:rgba(14,14,13,.55)}
@@ -1222,12 +1227,12 @@ function formHTML(fid){
     // без квізу питаємо діапазони прямо у формі; після квізу ці поля приховані (відповіді вже є)
     + '<div class="field" data-money><span class="lbl" id="' + fid + '_inc">Ваш дохід на місяць — приблизно</span><div class="chipsel" role="radiogroup" aria-labelledby="' + fid + '_inc">' + INCOME_OPTS.map(function(o){ return chip("income", o.id, o.t); }).join("") + '</div><p class="err" data-err="income">Оберіть приблизний дохід — так підберемо радника.</p></div>'
     + '<div class="field" data-money><span class="lbl" id="' + fid + '_sav">Скільки зараз відкладено або вкладено</span><div class="chipsel" role="radiogroup" aria-labelledby="' + fid + '_sav">' + SAVINGS_OPTS.map(function(o){ return chip("savings", o.id, o.t); }).join("") + '</div><p class="err" data-err="savings">Оберіть приблизну суму.</p></div>'
-    + '<div class="field"><span class="lbl" id="' + fid + '_slot">Коли вам зручно поговорити 5 хвилин?</span><div class="chipsel chipsel--slots" role="radiogroup" aria-labelledby="' + fid + '_slot" data-slots></div><p class="field-note" data-tz-note hidden>Час указано за вашим часовим поясом.</p><p class="err" data-err="slot">Оберіть зручний час.</p></div>'
+    + '<div class="field" data-slot-field><span class="lbl" id="' + fid + '_slot">Коли вам зручно поговорити 5 хвилин?</span><div class="chipsel chipsel--slots" role="radiogroup" aria-labelledby="' + fid + '_slot" data-slots></div><p class="field-note" data-tz-note hidden>Час указано за вашим часовим поясом.</p><p class="err" data-err="slot">Оберіть зручний час.</p></div>'
     + '<div class="messenger-confirm" data-messenger-confirm><input class="messenger-confirm__input" id="' + fid + '_messenger" name="messenger_confirmed" type="checkbox" required><label for="' + fid + '_messenger">Підтверджую, що за цим номером зареєстровано месенджер</label></div>'
     + '<button type="submit" class="btn btn--block" data-submit aria-disabled="true">Записатися на розбір <span aria-hidden="true">→</span></button>'
     + (TG_ON ? '<div class="form__or">або</div><button type="button" class="btn btn--block btn--tg" data-submit-tg aria-disabled="true">' + TG_SVG + 'Записатися через Telegram</button><p class="form__tg-note">Відкриється чат з менеджером BRAVE — повідомлення вже буде готове.</p>' : '')
     + '<p class="form__submit-error" data-submit-error role="alert">Не вдалося надіслати заявку. Перевірте з\'єднання та спробуйте ще раз.</p>'
-    + '<p class="form__legal">Менеджер BRAVE зв\'яжеться з вами в обраний час. Жодних розсилок. Ваші дані бачать лише менеджер і радник. Разом із заявкою фіксується IP-адреса для атрибуції та захисту від спаму.</p>'
+    + '<p class="form__legal"><span data-legal-slot>Менеджер BRAVE зв\'яжеться з вами в обраний час. </span>Жодних розсилок. Ваші дані бачать лише менеджер і радник. Разом із заявкою фіксується IP-адреса для атрибуції та захисту від спаму.</p>'
     + '</form><div class="form__ok" data-ok aria-live="polite"></div>';
 }
 $$("[data-form-slot]").forEach(function(slot){ slot.innerHTML = formHTML(slot.getAttribute("data-fid")); slot.querySelector("[data-form]").setAttribute("data-source", slot.getAttribute("data-form-slot")); });
@@ -1236,14 +1241,26 @@ var CTX = {
   def:{title:"Записатися на безкоштовний розбір", sub:"Оберіть зручний час — менеджер BRAVE зв'яжеться з вами, уточнить запит і запише на розбір з радником. Розбір — онлайн, 1-на-1, безкоштовно.", btn:"Записатися на розбір"},
   done:{title:"Записатися на безкоштовний розбір", sub:"Оберіть зручний час — менеджер BRAVE зв'яжеться з вами, уточнить запит і запише на розбір з радником. Радник заздалегідь побачить ваші відповіді з оцінки — розмова почнеться не з нуля.", btn:"Записатися на розбір"}
 };
+var TG_MODE = {
+  title: "Записатися через Telegram",
+  sub: "Залиште контакти — і одразу відкриється чат з менеджером BRAVE з готовим повідомленням. Там менеджер відповість і запише вас на безкоштовний розбір з радником.",
+  btn: "Перейти в Telegram",
+  note: "Повідомлення вже буде готове — лишиться натиснути «Надіслати»."
+};
 var modal = $("#leadModal"), lastFocus = null, mSource = "modal";
-function openModal(source){
+// mode "tg" — коротка форма з липкої кнопки: контакти → заявка в CRM → одразу чат у Telegram
+function openModal(source, mode){
   lastFocus = document.activeElement; mSource = source;
   var c = quizResult ? CTX.done : CTX.def, f = modal.querySelector("[data-form]"), ok = modal.querySelector("[data-ok]");
-  $("#mTitle").textContent = c.title; $("#mSub").textContent = c.sub;
+  var tg = mode === "tg" && TG_ON;
+  if (tg) f.setAttribute("data-mode", "tg"); else f.removeAttribute("data-mode");
+  $("#mTitle").textContent = tg ? TG_MODE.title : c.title; $("#mSub").textContent = tg ? TG_MODE.sub : c.sub;
   f.hidden = false; ok.classList.remove("show"); ok.innerHTML = "";
   var submitError = f.querySelector("[data-submit-error]"); if (submitError) submitError.classList.remove("show");
   f.querySelector("[data-submit]").innerHTML = c.btn + ' <span aria-hidden="true">→</span>';
+  var tgBtn = f.querySelector("[data-submit-tg]"), tgNote = f.querySelector(".form__tg-note");
+  if (tgBtn) tgBtn.innerHTML = tg ? TG_SVG_W + TG_MODE.btn + ' <span aria-hidden="true">→</span>' : TG_SVG + "Записатися через Telegram";
+  if (tgNote) tgNote.textContent = tg ? TG_MODE.note : "Відкриється чат з менеджером BRAVE — повідомлення вже буде готове.";
   renderSlots(f);
   modal.classList.add("open"); modal.setAttribute("aria-hidden", "false"); document.body.classList.add("modal-open");
   setTimeout(function(){ $("#m_name").focus(); }, 60);
@@ -1274,7 +1291,8 @@ function validate(form){
   var okN = name.value.trim().length > 0;
   var okP = iti ? (phone.value.trim() !== "" && iti.isValidNumber()) : phone.value.replace(/\D/g, "").length >= 9;
   var needMoney = !quizResult;
-  var okI = !needMoney || !!radioVal(form, "income"), okS = !needMoney || !!radioVal(form, "savings"), okT = !!radioVal(form, "slot");
+  var okI = !needMoney || !!radioVal(form, "income"), okS = !needMoney || !!radioVal(form, "savings");
+  var okT = form.getAttribute("data-mode") === "tg" || !!radioVal(form, "slot");   // у короткій формі Telegram час не питаємо: домовляються в чаті
   setErr(form, "name", !okN); setErr(form, "phone", !okP);
   setErr(form, "income", !okI); setErr(form, "savings", !okS); setErr(form, "slot", !okT);
   if (!okN){ name.focus(); return false; }
@@ -1296,7 +1314,7 @@ function syncMessengerButton(form){
   $$("[data-submit],[data-submit-tg]", form).forEach(function(btn){ btn.setAttribute("aria-disabled", String(!confirmed)); });
   if (confirmed) setMessengerAttention(form, false);
 }
-var SOURCE_LABEL = {quiz_book:"форма під результатом оцінки", header:"кнопка в шапці", hero:"перший екран", final:"форма внизу сторінки", sticky:"липка кнопка на мобільному"};
+var SOURCE_LABEL = {quiz_book:"форма під результатом оцінки", header:"кнопка в шапці", hero:"перший екран", final:"форма внизу сторінки", sticky:"липка кнопка на мобільному", sticky_tg:"липка кнопка Telegram на мобільному (коротка форма)"};
 var GROUP_LINE = {
   A: "ГРУПА А — підходить, взяти першою",
   B: "ГРУПА Б — під питанням, взяти другою",
@@ -1330,13 +1348,16 @@ function okHTML(lead, via){
       + (weak ? "<p>Ваш результат оцінки лишається на сторінці. Почніть із компетенції «" + esc(weak) + "» — там зараз найбільше можливостей.</p>" : "")
       + '<p class="ok-later">Заявка в нас є. Коли ситуація зміниться, будемо раді допомогти.</p>';
   }
+  var withQuiz = lead.quiz ? " — радник уже бачитиме ваші відповіді з оцінки" : "";
   var h = "<h3>Дякуємо, " + name + "! Заявку отримано</h3>"
-    + '<p>Менеджер BRAVE зв\'яжеться з вами <span class="ok-when">' + esc(lead.call_time_local || "найближчим часом") + "</span>, уточнить запит і запише на розбір з радником" + (lead.quiz ? " — радник уже бачитиме ваші відповіді з оцінки" : "") + ".</p>";
+    + (lead.call_time_local
+      ? '<p>Менеджер BRAVE зв\'яжеться з вами <span class="ok-when">' + esc(lead.call_time_local) + "</span>, уточнить запит і запише на розбір з радником" + withQuiz + ".</p>"
+      : "<p>Менеджер BRAVE відповість вам у Telegram у робочий час і запише на розбір з радником" + withQuiz + ".</p>");
   if (TG_ON){
     var tg = esc(tgUrl(lead));
     if (via === "telegram"){
       h += '<div class="ok-tg"><h4>Відкриваємо Telegram…</h4><p>Повідомлення менеджеру вже готове — лишилося натиснути «Надіслати».</p>'
-        + '<a class="btn btn--block btn--tg-fill" href="' + tg + '" data-tg-open="thanks_retry">' + TG_SVG_W + "Чат не відкрився? Натисніть тут</a></div>";
+        + '<a class="btn btn--block btn--tg-fill" href="' + tg + '" data-tg-open="thanks_retry">' + TG_SVG_W + "Відкрити чат у Telegram</a><p class=\"form__tg-note\">Якщо чат не відкрився сам — натисніть кнопку.</p></div>";
     } else {
       h += '<div class="ok-tg"><h4>Останній крок — напишіть нам у Telegram</h4>'
         + "<p>Так менеджер відповість у вашому чаті, а не з незнайомого номера, і повідомлення не загубиться серед спаму. Там же можна одразу поставити питання.</p>"
@@ -1403,6 +1424,7 @@ function submitLead(form, via){
     var ok = form.parentElement.querySelector("[data-ok]");
     ok.innerHTML = okHTML(lead, via);
     form.hidden = true; ok.classList.add("show");
+    if (modal.contains(form)) $("#mSub").textContent = "";   // у модалці лишаємо тільки подяку
     $$("[data-tg-open]", ok).forEach(function(a){ a.addEventListener("click", function(){ track("tg_open", {source: source, cta: a.getAttribute("data-tg-open")}); }); });
     $$("[data-wa-open]", ok).forEach(function(a){ a.addEventListener("click", function(){ track("wa_open", {source: source, cta: "thanks"}); }); });
     // «Записатися через Telegram»: після запису в CRM одразу відкриваємо чат (крім групи В)
@@ -1435,7 +1457,7 @@ $$("[data-form]").forEach(function(form){
   form.addEventListener("change", function(e){ if (e.target.type === "radio") setErr(form, e.target.name, false); });
   form.querySelector('[name="name"]').addEventListener("blur", function(){ if (this.value.trim()) setErr(form, "name", false); });
   form.querySelector('[name="phone"]').addEventListener("blur", function(){ var iti = itiMap[this.id]; if (this.value.trim() && iti) setErr(form, "phone", !iti.isValidNumber()); });
-  form.addEventListener("submit", function(e){ e.preventDefault(); submitLead(form, "form"); });
+  form.addEventListener("submit", function(e){ e.preventDefault(); submitLead(form, form.getAttribute("data-mode") === "tg" ? "telegram" : "form"); });
 });
 // вікна для дзвінка оновлюються, якщо сторінка довго відкрита
 setInterval(function(){ $$("[data-form]").forEach(function(f){ if (!f.hidden) renderSlots(f); }); }, 5 * 6e4);
@@ -1477,15 +1499,24 @@ $$(".faq details").forEach(function(d){ d.addEventListener("toggle", function(){
 
 // липка кнопка на мобільному: ховаємо лише там, де вона заважає, — біля кнопки першого екрана, поки людина відповідає на квіз, і над формами заявки
 var sticky = $("#sticky"), stickyBtn = $("#stickyBtn");
+// Є акаунт Telegram → липка кнопка веде не в оцінку, а в коротку форму «контакти → Telegram». Без акаунта — як раніше.
+var STICKY_TG = TG_ON;
+if (STICKY_TG){
+  stickyBtn.removeAttribute("data-quiz-start"); stickyBtn.setAttribute("href", "#final");
+  stickyBtn.classList.add("btn--tg-fill"); stickyBtn.innerHTML = TG_SVG_W + "Записатися через Telegram";
+}
 var stickyAvoid = {heroCta: $("#heroCta"), quiz: $(".quiz"), quizForm: $("#quizBook .formbox"), finalForm: $("#final .formbox")};
 function inView(el){ if (!el) return false; var r = el.getBoundingClientRect(); return r.height > 0 && r.bottom > 0 && r.top < innerHeight; }
 function updateSticky(){
   if (!sticky) return;
-  if (quizResult){ stickyBtn.textContent = "Записатися на безкоштовний розбір"; stickyBtn.removeAttribute("data-quiz-start"); stickyBtn.setAttribute("href", "#final"); }
+  if (quizResult && !STICKY_TG){ stickyBtn.textContent = "Записатися на безкоштовний розбір"; stickyBtn.removeAttribute("data-quiz-start"); stickyBtn.setAttribute("href", "#final"); }
   var hide = inView(stickyAvoid.heroCta) || (!quizResult && inView(stickyAvoid.quiz)) || inView(stickyAvoid.quizForm) || inView(stickyAvoid.finalForm);
   sticky.classList.toggle("show", !hide && scrollY > 300);
 }
-stickyBtn.addEventListener("click", function(e){ if (quizResult){ e.preventDefault(); openModal("sticky"); } });
+stickyBtn.addEventListener("click", function(e){
+  if (STICKY_TG){ e.preventDefault(); openModal("sticky_tg", "tg"); }
+  else if (quizResult){ e.preventDefault(); openModal("sticky"); }
+});
 if ("IntersectionObserver" in window){
   var rv = new IntersectionObserver(function(entries){ entries.forEach(function(en){ if (en.isIntersecting){ en.target.classList.add("in"); rv.unobserve(en.target); } }); }, {rootMargin: "0px 0px -8% 0px"});
   $$(".rv").forEach(function(el){ rv.observe(el); });
