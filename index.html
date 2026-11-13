@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#F2EFE9">
 <script>document.documentElement.classList.add("js")</script>
 <meta property="og:title" content="Ви добре заробляєте. Допоможемо вам зберігати та примножувати зароблене">
-<meta property="og:description" content="Оцініть свої 4 фінансові компетенції за 2 хвилини — без цифр і реєстрації.">
+<meta property="og:description" content="Оцініть свої 4 фінансові компетенції за 2 хвилини й запишіться на безкоштовний розбір з радником BRAVE.">
 <meta property="og:locale" content="uk_UA">
 <link rel="preload" href="assets/fonts/geologica-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/onest-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
@@ -288,6 +288,37 @@ body.quiz-done .attached{display:block}
 .form__ok ul{padding-left:18px;margin:8px 0 0}
 @media(max-width:900px){.final{grid-template-columns:1fr}}
 
+/* v3: діапазони доходу, вибір часу, Telegram */
+.micro--fit{margin-top:4px;max-width:34em}
+.chipsel{display:flex;flex-wrap:wrap;gap:6px}
+.chipsel label{cursor:pointer;position:relative}
+.chipsel input{position:absolute;opacity:0;pointer-events:none}
+.chipsel span{display:inline-block;border:1px solid rgba(14,14,13,.2);border-radius:999px;padding:9px 14px;font-size:14.5px;line-height:1.25;background:#fff;transition:background .15s,border-color .15s}
+.chipsel label:hover span{border-color:var(--ink)}
+.chipsel input:checked + span{background:var(--ink);color:#fff;border-color:var(--ink)}
+.chipsel input:focus-visible + span{outline:3px solid var(--blue);outline-offset:2px}
+.chipsel[aria-invalid="true"] span{border-color:#C0362C}
+.chipsel--slots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+.chipsel--slots span{display:block;text-align:center;padding:10px 8px;border-radius:var(--r-sm)}
+.chipsel--slots small{display:block;font-size:12.5px;opacity:.7;margin-top:1px}
+.field-note{font-size:12.5px;color:var(--muted);margin:6px 0 0}
+body.quiz-done [data-money]{display:none}
+.form__or{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);margin:12px 0}
+.form__or::before,.form__or::after{content:"";flex:1;height:1px;background:var(--line)}
+.btn--tg{background:#fff;color:#0F6FA6;box-shadow:inset 0 0 0 1.5px #2AABEE;text-decoration:none}
+.btn--tg:hover{background:#EAF6FD}
+.btn--tg svg,.btn--tg-fill svg{flex:none;width:22px;height:22px}
+.btn--tg[aria-disabled="true"],.btn--tg[aria-disabled="true"]:hover{background:#fff;opacity:.45;cursor:not-allowed;transform:none}
+.btn--tg-fill{background:#1A7FC1;color:#fff;box-shadow:none}
+.btn--tg-fill:hover{background:#136AA3}
+.form__tg-note{font-size:12.5px;color:var(--muted);margin:8px 0 0;text-align:center}
+.ok-tg{background:#EAF6FD;border-radius:var(--r-sm);padding:18px;margin:16px 0 0}
+.ok-tg h4{font:700 18px/1.3 var(--f-head);margin:0 0 6px;color:var(--ink)}
+.ok-tg p{margin:0 0 14px;font-size:15px}
+.ok-tg .form__tg-note{text-align:left;margin-top:10px}
+.ok-when{color:var(--blue);font-weight:600}
+.form__ok .ok-later{font-size:14.5px;margin-top:14px}
+
 /* modal */
 .modal{position:fixed;inset:0;z-index:70;display:none;align-items:flex-end;justify-content:center;background:rgba(14,14,13,.55)}
 .modal.open{display:flex}
@@ -365,7 +396,8 @@ body.quiz-done .attached{display:block}
         <a class="btn" href="#quiz" data-quiz-start data-track="hero_quiz">Оцінити свої 4 компетенції · 2 хв <span aria-hidden="true">→</span></a>
         <button type="button" class="linkbtn" data-lead="hero">або одразу записатися на безкоштовний розбір</button>
       </div>
-      <p class="micro">10 питань · лише кнопки · без цифр</p>
+      <p class="micro">12 питань · лише кнопки · 2 хв</p>
+      <p class="micro micro--fit"><span class="todo" title="ПІДТВЕРДИТИ поріг у BRAVE">Радник дає найбільше користі, коли дохід від 3 000 $ на місяць або вже є накопичення.</span></p>
       <dl class="trust">
         <div><dt>300+</dt><dd>клієнтів у супроводі</dd></div>
         <div><dt>9,3 / 10</dt><dd>оцінка клієнтів · 282 відповіді</dd></div>
@@ -445,7 +477,7 @@ body.quiz-done .attached{display:block}
         <p class="eyebrow"><b>04</b>Оцінка 4 компетенцій</p>
         <h2 class="h2" id="quiz-h">Скільки з чотирьох <span class="blue">працює у вас?</span></h2>
         <ul class="chips" aria-hidden="true"><li>Заробляти</li><li>Витрачати</li><li>Накопичувати</li><li>Примножувати</li></ul>
-        <p class="lead">10 питань, лише кнопки, без цифр. Наприкінці — коротке резюме вашої ситуації, рівень кожної компетенції та питання, які варто розібрати з радником.</p>
+        <p class="lead">12 питань, лише кнопки. Точних сум не питаємо — лише діапазони. Наприкінці — коротке резюме вашої ситуації, рівень кожної компетенції та питання, які варто розібрати з радником.</p>
         <button class="btn" type="button" id="qStart">Почати оцінку <span aria-hidden="true">→</span></button>
         <p class="micro">Результат — одразу на екрані, контакти для цього не потрібні.</p>
       </div>
@@ -483,8 +515,8 @@ body.quiz-done .attached{display:block}
           <h3 class="h3">Наступний крок — розбір вашої ситуації з радником BRAVE</h3>
           <p>Безкоштовно · онлайн, з будь-якої країни · 1-на-1. Радник уже бачитиме ваші відповіді — розмова почнеться не з нуля.</p>
           <ol class="band__steps">
-            <li><b>Залишаєте заявку</b><span>Це хвилина: ім'я та номер телефону.</span></li>
-            <li><b>Менеджер BRAVE зв'язується з вами</b><span>Уточнює ваш запит і зручний час, підбирає радника.</span></li>
+            <li><b>Залишаєте заявку</b><span>Це хвилина: ім'я, номер телефону і зручний час для розмови.</span></li>
+            <li><b>Менеджер BRAVE зв'язується з вами</b><span>У час, який ви обрали. Уточнює ваш запит, підбирає радника й дату розбору.</span></li>
             <li><b>Розбір з радником</b><span>Онлайн, 1-на-1. Радник пройде з вами пункти з оцінки й відповість на головне питання.</span></li>
           </ol>
         </div>
@@ -531,12 +563,12 @@ body.quiz-done .attached{display:block}
     <h2 class="h2" id="faq-h">Що зазвичай <span class="blue">питають</span></h2>
     <div class="faq">
       <details><summary>У мене немає бізнесу. Мені це підходить?</summary><p>Так. Серед клієнтів BRAVE — IT-керівники, експерти, люди з власною практикою й кількома джерелами доходу. Чотири компетенції однакові для всіх, різняться лише інструменти.</p></details>
-      <details><summary>У мене не такий великий дохід. Може, рано?</summary><p>Радник потрібен не з певної суми, а тоді, коли грошей, рахунків і рішень стало більше, ніж хочеться тримати в голові. Серед наших клієнтів є ті, хто починав з доходу 4 500 $ на місяць.</p></details>
+      <details><summary>У мене не такий великий дохід. Може, рано?</summary><p>Радник дає найбільше користі, коли дохід від <span class="todo" title="ПІДТВЕРДИТИ поріг у BRAVE">3 000 $ на місяць або вже є накопичення від 20 000 $</span>: тоді є чим керувати, і супровід окупається. Якщо поки менше — пройдіть оцінку на цій сторінці: вона безкоштовна й покаже, з якої компетенції почати.</p></details>
       <details><summary>Мені заборонятимуть витрачати?</summary><p>Ні. У багатьох клієнтів витрати з часом навіть зростають — разом з доходом, свідомо і без почуття провини. Мета не в тому, щоб урізати життя, а в тому, щоб знати, скільки можна.</p></details>
       <details><summary>Я можу розібратися сам. Навіщо радник?</summary><p>Розібратися можна. Складніше — тримати систему роками, коли на неї немає часу. Облік, який почали й закинули, — найчастіша історія наших клієнтів до BRAVE. Цю частину бере на себе радник.</p></details>
       <details><summary>Я живу не в Україні. Ви зі мною працюватимете?</summary><p>Так. Ми працюємо онлайн з клієнтами в різних країнах і з різними валютами. <span class="todo" title="ЮРИСТ: формат для резидентів ЄС">Питання податків і місцевих правил вирішуємо разом з вашими місцевими фахівцями.</span></p></details>
       <details><summary>Скільки коштує робота з радником?</summary><p>Вартість індивідуальна: вона залежить від вашої ситуації, цілей і формату супроводу. Радник назве її після розбору, коли буде зрозуміло, що саме потрібно. Розбір — безкоштовний.</p></details>
-      <details><summary>Хто бачить мої дані? Ви берете гроші в управління?</summary><p>Ваші дані бачать лише менеджер і ваш радник, за запитом підписуємо NDA. Гроші лишаються на ваших рахунках — ми не приймаємо кошти на свої. Оцінка на цій сторінці не питає жодних сум.</p></details>
+      <details><summary>Хто бачить мої дані? Ви берете гроші в управління?</summary><p>Ваші дані бачать лише менеджер і ваш радник, за запитом підписуємо NDA. Гроші лишаються на ваших рахунках — ми не приймаємо кошти на свої. Точних сум оцінка не питає — лише діапазони.</p></details>
       <details><summary>Чоловік чи дружина не хоче цим займатися. Що робити?</summary><p>Так буває часто. В одній із наших історій чоловік вважав облік зайвим, а дружина хотіла порядку, тож бюджет родини взяв на себе радник. <span class="todo" title="ПІДТВЕРДИТИ: формат спільної сесії для пари">Розбір можна пройти разом.</span></p></details>
       <details><summary>Чим радник відрізняється від бухгалтера чи банку?</summary><p>Бухгалтер відповідає за податки й звітність, банк — за свої продукти. Радник BRAVE бачить усі ваші гроші разом і допомагає вирішити, що з ними робити далі.</p></details>
     </div>
@@ -549,7 +581,7 @@ body.quiz-done .attached{display:block}
     <div>
       <p class="eyebrow"><b>07</b>Розбір ситуації</p>
       <h2 class="h2" id="fin-h">Ви вже вмієте заробляти. <span class="blue">Решту складемо в систему — разом з радником BRAVE</span></h2>
-      <p class="lead">Залиште заявку — менеджер BRAVE зв'яжеться з вами, уточнить запит і зручний час і запише на безкоштовний розбір з радником.</p>
+      <p class="lead">Залиште заявку й оберіть зручний час — менеджер BRAVE зв'яжеться з вами, уточнить запит і запише на безкоштовний розбір з радником.</p>
       <p class="final__alt">Ще не проходили оцінку? <a href="#quiz" data-quiz-start style="color:#fff">Почніть з неї — 2 хвилини</a>, і радник побачить ваші відповіді заздалегідь.</p>
     </div>
     <div class="formbox" data-form-slot="final" data-fid="fin"></div>
@@ -598,6 +630,23 @@ body.quiz-done .attached{display:block}
    ========================================================= */
 var SUBMIT_URL = "/.netlify/functions/lead-submit"; // Netlify Function; секретний URL NetHunt зберігається лише на сервері
 var PIXEL_ID = "1669140901889164";   // піксель BRAVE (той самий, що на landing-A)
+
+// Робочий Telegram менеджера: username без @ (напр. "brave_manager") або номер у форматі "+380XXXXXXXXX".
+// Порожньо = кнопок Telegram на сайті немає (на localhost вони показуються для перевірки).
+var TG_CONTACT = "";                 // ПІДСТАВИТИ: акаунт від BRAVE
+var WA_PHONE = "";                   // необовʼязково: WhatsApp менеджера, лише цифри з кодом країни (напр. "380XXXXXXXXX")
+
+// Правило відбору — ЧЕРНЕТКА, остаточні пороги називає BRAVE.
+// А — підходить: дохід від 3 000 $ або накопичення від 20 000 $. Б — під питанням: дохід 1 500–3 000 $ і накопичення 5 000–20 000 $. В — решта.
+var GROUP_A = {income: ["inc_3_5", "inc_5_10", "inc_10p"], savings: ["sav_20_100", "sav_100p"]};
+var GROUP_B = {income: ["inc_15_3"], savings: ["sav_5_20"]};
+
+// Вікна для дзвінка — київський час. ПІДТВЕРДИТИ робочі години менеджера.
+var CALL_DAYS = [1, 2, 3, 4, 5];     // 0 — неділя … 6 — субота
+var CALL_WINDOWS = [[9, 12], [12, 15], [15, 18], [18, 20]];
+var CALL_MIN_LEFT = 90;              // вікно пропонуємо, якщо до його кінця лишилося щонайменше стільки хвилин
+var CALL_SLOTS = 4;                  // скільки найближчих вікон показати
+
 var qs = new URLSearchParams(location.search);
 if (qs.get("review") === "1") document.documentElement.classList.add("review");
 // Локальне превʼю (localhost, файл) не шле подій у бойовий піксель. Для перевірки пікселя — ?pixel=1
@@ -654,12 +703,16 @@ function loadPixel(){
   window.fbq('init', PIXEL_ID);
   window.fbq('track', 'PageView');
 }
-// У Meta — лише назви подій і джерело заявки. Жодних відповідей квізу чи рівнів.
+// У Meta — лише назви подій і джерело заявки. Жодних відповідей квізу, рівнів чи діапазонів доходу.
+// Стандартна подія Lead — лише для групи А: на ній вчиться реклама. Групи Б і В — окремими подіями Lead_B / Lead_C.
 function track(ev, p){
   var payload = Object.assign({event: ev}, p || {});
   (window.dataLayer = window.dataLayer || []).push(payload);
   if (typeof window.fbq === "function"){
-    if (ev === "lead_submit") window.fbq("track", "Lead", {content_name: payload.source, content_category: "landing_4k"}, {eventID: payload.event_id});
+    if (ev === "lead_submit"){
+      if (payload.group === "A") window.fbq("track", "Lead", {content_name: payload.source, content_category: "landing_4k"}, {eventID: payload.event_id});
+      else window.fbq("trackCustom", "Lead_" + payload.group, {content_name: payload.source, content_category: "landing_4k"}, {eventID: payload.event_id});
+    }
     else window.fbq("trackCustom", ev, {source: payload.source, step: payload.step, cta: payload.cta});
   }
   if (window.console) console.info("[track]", ev, payload);
@@ -675,6 +728,24 @@ var COMP = {
   save:{name:"Накопичувати", noun:"накопичення"}, inv:{name:"Примножувати", noun:"інвестиції"}
 };
 var ORDER = ["earn","spend","save","inv"];
+// Діапазони доходу й накопичень — спільні для квізу (питання 11–12) і форми без квізу
+var INCOME_OPTS = [
+  {id:"inc_lt15", t:"до 1 500 $"},
+  {id:"inc_15_3", t:"1 500–3 000 $"},
+  {id:"inc_3_5",  t:"3 000–5 000 $"},
+  {id:"inc_5_10", t:"5 000–10 000 $"},
+  {id:"inc_10p",  t:"понад 10 000 $"}];
+var SAVINGS_OPTS = [
+  {id:"sav_lt5",    t:"до 5 000 $"},
+  {id:"sav_5_20",   t:"5 000–20 000 $"},
+  {id:"sav_20_100", t:"20 000–100 000 $"},
+  {id:"sav_100p",   t:"понад 100 000 $"}];
+function moneyLabel(list, id){ var o = list.filter(function(x){ return x.id === id; })[0]; return o ? o.t : null; }
+function leadGroup(income, savings){
+  if (GROUP_A.income.indexOf(income) > -1 || GROUP_A.savings.indexOf(savings) > -1) return "A";
+  if (GROUP_B.income.indexOf(income) > -1 && GROUP_B.savings.indexOf(savings) > -1) return "B";
+  return "C";
+}
 var Q = [
   {id:"q1", comp:null, label:"Про вас", text:"Звідки у вас основний дохід?", opts:[
     {id:"ctx_business", t:"Власний бізнес"},
@@ -735,7 +806,10 @@ var Q = [
     {id:"g_kids",      t:"Гроші на навчання й майбутнє дітей"},
     {id:"g_beyond",    t:"Гроші, які не залежать від одного бізнесу чи роботи"},
     {id:"g_income",    t:"Більший дохід — і розуміння, навіщо"},
-    {id:"g_countries", t:"Фінанси між країнами й валютами"}]}
+    {id:"g_countries", t:"Фінанси між країнами й валютами"}]},
+  // Питання 11–12 не впливають на рівні компетенцій: за ними менеджер бачить групу А/Б/В
+  {id:"q11", comp:null, label:"Для радника", text:"Який приблизно ваш дохід на місяць?", hint:"Останні два питання — щоб підібрати радника під вашу ситуацію. У доларах чи євро, приблизно", opts:INCOME_OPTS},
+  {id:"q12", comp:null, label:"Для радника", text:"Скільки у вас зараз відкладено або вкладено?", hint:"Резерв, депозити, інвестиції — разом і приблизно", opts:SAVINGS_OPTS}
 ];
 var LEVEL = {strong:"Сильна сторона", base:"Є база", growth:"Зона росту"};
 function levelOf(sc){ return sc >= 75 ? "strong" : sc >= 50 ? "base" : "growth"; }
@@ -864,12 +938,15 @@ var STORY_BY_SKEW = {
   _spend:"dmytro", _save:"it", _inv:"sasha", _earn:"kyrylo"
 };
 var TESTS = {
-  sasha:  {q1:"ctx_business",q2:"e_stable",q3:"e_approx",q4:"s_general",q5:"s_doubt",q6:"n_gt12",q7:"n_idle",q8:"i_none",q9:"b_more",q10:["g_invest","g_purchase"]},
-  it:     {q1:"ctx_employed",q2:"e_overload",q3:"e_exact",q4:"s_dissolve",q5:"s_borrow",q6:"n_1_3",q7:"n_little",q8:"i_minus",q9:"b_time",q10:["g_purchase","g_reserve"]},
-  family: {q1:"ctx_business",q2:"e_overload",q3:"e_mixed",q4:"s_dissolve",q5:"s_feel",q6:"n_business",q7:"n_back",q8:"i_frag",q9:"b_time",q10:["g_clarity","g_beyond"]},
-  dmytro: {q1:"ctx_multi",q2:"e_ceiling",q3:"e_approx",q4:"s_tried",q5:"s_doubt",q6:"n_gt12",q7:"n_rule",q8:"i_frag",q9:"b_alone",q10:["g_purchase","g_income"]},
-  kyrylo: {q1:"ctx_business",q2:"e_ceiling",q3:"e_approx",q4:"s_general",q5:"s_know",q6:"n_3_12",q7:"n_left",q8:"i_diy",q9:"b_nothing",q10:["g_income"]},
-  strong: {q1:"ctx_employed",q2:"e_grow",q3:"e_exact",q4:"s_cat",q5:"s_know",q6:"n_3_12",q7:"n_rule",q8:"i_plan",q9:"b_nothing",q10:["g_kids","g_beyond"]}
+  sasha:  {q1:"ctx_business",q2:"e_stable",q3:"e_approx",q4:"s_general",q5:"s_doubt",q6:"n_gt12",q7:"n_idle",q8:"i_none",q9:"b_more",q10:["g_invest","g_purchase"],q11:"inc_5_10",q12:"sav_20_100"},
+  it:     {q1:"ctx_employed",q2:"e_overload",q3:"e_exact",q4:"s_dissolve",q5:"s_borrow",q6:"n_1_3",q7:"n_little",q8:"i_minus",q9:"b_time",q10:["g_purchase","g_reserve"],q11:"inc_5_10",q12:"sav_5_20"},
+  family: {q1:"ctx_business",q2:"e_overload",q3:"e_mixed",q4:"s_dissolve",q5:"s_feel",q6:"n_business",q7:"n_back",q8:"i_frag",q9:"b_time",q10:["g_clarity","g_beyond"],q11:"inc_10p",q12:"sav_lt5"},
+  dmytro: {q1:"ctx_multi",q2:"e_ceiling",q3:"e_approx",q4:"s_tried",q5:"s_doubt",q6:"n_gt12",q7:"n_rule",q8:"i_frag",q9:"b_alone",q10:["g_purchase","g_income"],q11:"inc_3_5",q12:"sav_20_100"},
+  kyrylo: {q1:"ctx_business",q2:"e_ceiling",q3:"e_approx",q4:"s_general",q5:"s_know",q6:"n_3_12",q7:"n_left",q8:"i_diy",q9:"b_nothing",q10:["g_income"],q11:"inc_10p",q12:"sav_100p"},
+  strong: {q1:"ctx_employed",q2:"e_grow",q3:"e_exact",q4:"s_cat",q5:"s_know",q6:"n_3_12",q7:"n_rule",q8:"i_plan",q9:"b_nothing",q10:["g_kids","g_beyond"],q11:"inc_5_10",q12:"sav_20_100"},
+  // перевірка груп Б і В
+  groupb: {q1:"ctx_employed",q2:"e_stable",q3:"e_approx",q4:"s_general",q5:"s_feel",q6:"n_1_3",q7:"n_left",q8:"i_none",q9:"b_start",q10:["g_reserve"],q11:"inc_15_3",q12:"sav_5_20"},
+  groupc: {q1:"ctx_employed",q2:"e_stable",q3:"e_approx",q4:"s_general",q5:"s_feel",q6:"n_lt1",q7:"n_little",q8:"i_none",q9:"b_more",q10:["g_clarity"],q11:"inc_lt15",q12:"sav_lt5"}
 };
 
 /* =========================================================
@@ -973,7 +1050,7 @@ function renderStep(){
     html += '<li><button type="button" class="opt' + (multi ? ' opt--multi' : '') + '" data-o="' + o.id + '" aria-pressed="' + on + '"' + (dis ? ' aria-disabled="true"' : '') + '><span class="mark" aria-hidden="true"></span><span>' + o.t + '</span></button></li>';
   });
   html += '</ul><div class="q-nav">' + (idx > 0 ? '<button type="button" class="linkbtn" id="qBack">← Назад</button>' : '<span></span>')
-    + (multi ? '<button type="button" class="btn" id="qNext"' + ((chosen || []).length ? '' : ' disabled') + '>Показати результат <span aria-hidden="true">→</span></button>' : '') + '</div></div>';
+    + (multi ? '<button type="button" class="btn" id="qNext"' + ((chosen || []).length ? '' : ' disabled') + '>' + (idx === Q.length - 1 ? "Показати результат" : "Далі") + ' <span aria-hidden="true">→</span></button>' : '') + '</div></div>';
   el.innerHTML = html;
   $$(".opt", el).forEach(function(b){
     b.addEventListener("click", function(){
@@ -992,7 +1069,7 @@ function renderStep(){
     });
   });
   var back = $("#qBack"); if (back) back.addEventListener("click", function(){ go(idx - 1); });
-  var next = $("#qNext"); if (next) next.addEventListener("click", function(){ track("quiz_step", {step: idx + 1}); finishQuiz(); });
+  var next = $("#qNext"); if (next) next.addEventListener("click", function(){ track("quiz_step", {step: idx + 1}); go(idx + 1); });
 }
 function go(n, noFocus){
   if (n < 0) return;
@@ -1071,25 +1148,93 @@ function initPhone(input){
   });
 }
 
+/* ---------- Вікна для дзвінка: рахуємо в київському часі, показуємо в часі відвідувача ---------- */
+var KYIV_TZ = (function(){ try{ new Intl.DateTimeFormat("en-US", {timeZone: "Europe/Kyiv"}); return "Europe/Kyiv"; }catch(e){ return "Europe/Kiev"; } })();
+function tzParts(ts, tz){
+  var o = {};
+  new Intl.DateTimeFormat("en-US", {timeZone: tz, hourCycle: "h23", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit"})
+    .formatToParts(new Date(ts)).forEach(function(p){ if (p.type !== "literal") o[p.type] = +p.value; });
+  if (o.hour === 24) o.hour = 0;
+  return o;
+}
+function kyivTs(y, m, d, h){   // m: 1…12 → мітка часу UTC для цієї години за Києвом
+  var guess = Date.UTC(y, m - 1, d, h), p = tzParts(guess, KYIV_TZ);
+  return guess - (Date.UTC(p.year, p.month - 1, p.day, p.hour, p.minute) - guess);
+}
+var WD = ["нд", "пн", "вт", "ср", "чт", "пт", "сб"];
+var WD_AT = ["у неділю", "у понеділок", "у вівторок", "у середу", "у четвер", "у пʼятницю", "у суботу"];
+function pad(n){ return (n < 10 ? "0" : "") + n; }
+function hm(dt){ return dt.getHours() + ":" + pad(dt.getMinutes()); }
+function dkey(dt){ return dt.getFullYear() + "-" + dt.getMonth() + "-" + dt.getDate(); }
+function callSlots(){
+  var now = Date.now(), k = tzParts(now, KYIV_TZ), out = [];
+  var kyivOff = Math.round((Date.UTC(k.year, k.month - 1, k.day, k.hour, k.minute) - now) / 6e4);
+  var sameTz = Math.abs(kyivOff + new Date(now).getTimezoneOffset()) < 2;
+  var today = dkey(new Date(now)), tomorrow = dkey(new Date(now + 864e5));
+  for (var d = 0; d < 10 && out.length < CALL_SLOTS; d++){
+    var base = new Date(Date.UTC(k.year, k.month - 1, k.day + d));   // календарний день у Києві
+    if (CALL_DAYS.indexOf(base.getUTCDay()) < 0) continue;
+    for (var w = 0; w < CALL_WINDOWS.length && out.length < CALL_SLOTS; w++){
+      var y = base.getUTCFullYear(), m = base.getUTCMonth() + 1, dd = base.getUTCDate();
+      var s = new Date(kyivTs(y, m, dd, CALL_WINDOWS[w][0])), e = new Date(kyivTs(y, m, dd, CALL_WINDOWS[w][1]));
+      if (e.getTime() - now < CALL_MIN_LEFT * 6e4) continue;
+      var day = dkey(s) === today ? "Сьогодні" : dkey(s) === tomorrow ? "Завтра" : WD[s.getDay()] + ", " + pad(s.getDate()) + "." + pad(s.getMonth() + 1);
+      var time = hm(s) + "–" + hm(e);
+      out.push({
+        id: "s" + s.getTime(), day: day, time: time,
+        label: (day === "Сьогодні" || day === "Завтра" ? day.toLowerCase() : WD_AT[s.getDay()] + ", " + pad(s.getDate()) + "." + pad(s.getMonth() + 1)) + ", " + time,
+        kyiv: WD[base.getUTCDay()] + " " + pad(dd) + "." + pad(m) + ", " + CALL_WINDOWS[w][0] + ":00–" + CALL_WINDOWS[w][1] + ":00 (Київ)",
+        start: s.toISOString(), end: e.toISOString()
+      });
+    }
+  }
+  return {slots: out, sameTz: sameTz};
+}
+function renderSlots(form){
+  var box = form.querySelector("[data-slots]"); if (!box) return;
+  var was = radioVal(form, "slot"), r = callSlots();
+  form._slots = {};
+  box.innerHTML = r.slots.map(function(s){ form._slots[s.id] = s; return chip("slot", s.id, s.day, s.time, s.id === was); }).join("");
+  var note = form.querySelector("[data-tz-note]"); if (note) note.hidden = r.sameTz;
+}
+
+/* ---------- Telegram / WhatsApp з готовим повідомленням ---------- */
+var TG_ON = !!TG_CONTACT || IS_LOCAL;   // на localhost кнопки видно для перевірки, але сайт нікуди не переходить
+var TG_SVG = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#2AABEE"/><path fill="#fff" d="M5.4 11.8l11.1-4.3c.5-.2 1 .1.8.9l-1.9 8.9c-.1.6-.5.8-1 .5l-2.9-2.1-1.4 1.3c-.2.2-.3.3-.6.3l.2-2.9 5.4-4.9c.2-.2 0-.3-.4-.1l-6.6 4.2-2.9-.9c-.6-.2-.6-.6.2-.9z"/></svg>';
+var TG_SVG_W = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M5.4 11.8l11.1-4.3c.5-.2 1 .1.8.9l-1.9 8.9c-.1.6-.5.8-1 .5l-2.9-2.1-1.4 1.3c-.2.2-.3.3-.6.3l.2-2.9 5.4-4.9c.2-.2 0-.3-.4-.1l-6.6 4.2-2.9-.9c-.6-.2-.6-.6.2-.9z"/></svg>';
+function chatText(lead){
+  return "Добрий день! Я залишив(ла) заявку на сайті BRAVE на безкоштовний розбір з радником. Мене звати " + lead.name + "."
+    + (lead.call_time_local ? " Зручно поговорити: " + lead.call_time_local + "." : "")
+    + " Код заявки: " + lead.lead_code + ".";
+}
+function tgUrl(lead){ return "https://t.me/" + (TG_CONTACT || "PIDSTAVYTY_TELEGRAM").replace(/^@/, "") + "?text=" + encodeURIComponent(chatText(lead)); }
+function waUrl(lead){ return "https://wa.me/" + WA_PHONE.replace(/\D/g, "") + "?text=" + encodeURIComponent(chatText(lead)); }
+
 /* =========================================================
    7. Форми: модалка на кожен CTA + форма у фіналі
    ========================================================= */
+function chip(name, value, label, extra, checked){ return '<label><input type="radio" name="' + name + '" value="' + value + '"' + (checked ? " checked" : "") + '><span>' + label + (extra ? "<small>" + extra + "</small>" : "") + '</span></label>'; }
 function formHTML(fid){
   return '<p class="attached">Ваші відповіді з оцінки додамо до заявки — радник підготується заздалегідь.</p>'
     + '<form class="form" data-form novalidate>'
     + '<div class="field"><label for="' + fid + '_name">Як до вас звертатися?</label><input class="input" id="' + fid + '_name" name="name" autocomplete="given-name"><p class="err" data-err="name">Напишіть, як до вас звертатися.</p></div>'
     + '<div class="field"><label for="' + fid + '_phone">Номер телефону</label><input class="input" id="' + fid + '_phone" name="phone" type="tel" autocomplete="tel"><p class="err" data-err="phone">Перевірте номер: схоже, в ньому не вистачає цифр.</p></div>'
-    + '<div class="messenger-confirm" data-messenger-confirm><input class="messenger-confirm__input" id="' + fid + '_messenger" name="messenger_confirmed" type="checkbox" required><label for="' + fid + '_messenger">Підтверджую що за цим номером зареєстровано месенджер</label></div>'
+    // без квізу питаємо діапазони прямо у формі; після квізу ці поля приховані (відповіді вже є)
+    + '<div class="field" data-money><span class="lbl" id="' + fid + '_inc">Ваш дохід на місяць — приблизно</span><div class="chipsel" role="radiogroup" aria-labelledby="' + fid + '_inc">' + INCOME_OPTS.map(function(o){ return chip("income", o.id, o.t); }).join("") + '</div><p class="err" data-err="income">Оберіть приблизний дохід — так підберемо радника.</p></div>'
+    + '<div class="field" data-money><span class="lbl" id="' + fid + '_sav">Скільки зараз відкладено або вкладено</span><div class="chipsel" role="radiogroup" aria-labelledby="' + fid + '_sav">' + SAVINGS_OPTS.map(function(o){ return chip("savings", o.id, o.t); }).join("") + '</div><p class="err" data-err="savings">Оберіть приблизну суму.</p></div>'
+    + '<div class="field"><span class="lbl" id="' + fid + '_slot">Коли вам зручно поговорити 5 хвилин?</span><div class="chipsel chipsel--slots" role="radiogroup" aria-labelledby="' + fid + '_slot" data-slots></div><p class="field-note" data-tz-note hidden>Час указано за вашим часовим поясом.</p><p class="err" data-err="slot">Оберіть зручний час.</p></div>'
+    + '<div class="messenger-confirm" data-messenger-confirm><input class="messenger-confirm__input" id="' + fid + '_messenger" name="messenger_confirmed" type="checkbox" required><label for="' + fid + '_messenger">Підтверджую, що за цим номером зареєстровано месенджер</label></div>'
     + '<button type="submit" class="btn btn--block" data-submit aria-disabled="true">Записатися на розбір <span aria-hidden="true">→</span></button>'
+    + (TG_ON ? '<div class="form__or">або</div><button type="button" class="btn btn--block btn--tg" data-submit-tg aria-disabled="true">' + TG_SVG + 'Записатися через Telegram</button><p class="form__tg-note">Відкриється чат з менеджером BRAVE — повідомлення вже буде готове.</p>' : '')
     + '<p class="form__submit-error" data-submit-error role="alert">Не вдалося надіслати заявку. Перевірте з\'єднання та спробуйте ще раз.</p>'
-    + '<p class="form__legal">Менеджер BRAVE зв\'яжеться з вами <span class="todo" title="ПІДТВЕРДИТИ SLA">протягом робочого дня</span>. Жодних розсилок. Ваші дані бачать лише менеджер і радник. Разом із заявкою фіксується IP-адреса для атрибуції та захисту від спаму.</p>'
+    + '<p class="form__legal">Менеджер BRAVE зв\'яжеться з вами в обраний час. Жодних розсилок. Ваші дані бачать лише менеджер і радник. Разом із заявкою фіксується IP-адреса для атрибуції та захисту від спаму.</p>'
     + '</form><div class="form__ok" data-ok aria-live="polite"></div>';
 }
 $$("[data-form-slot]").forEach(function(slot){ slot.innerHTML = formHTML(slot.getAttribute("data-fid")); slot.querySelector("[data-form]").setAttribute("data-source", slot.getAttribute("data-form-slot")); });
 
 var CTX = {
-  def:{title:"Записатися на безкоштовний розбір", sub:"Менеджер BRAVE зв'яжеться з вами, уточнить запит і зручний час і запише на розбір з радником. Розбір — онлайн, 1-на-1, безкоштовно.", btn:"Записатися на розбір"},
-  done:{title:"Записатися на безкоштовний розбір", sub:"Менеджер BRAVE зв'яжеться з вами, уточнить запит і зручний час і запише на розбір з радником. Радник заздалегідь побачить ваші відповіді з оцінки — розмова почнеться не з нуля.", btn:"Записатися на розбір"}
+  def:{title:"Записатися на безкоштовний розбір", sub:"Оберіть зручний час — менеджер BRAVE зв'яжеться з вами, уточнить запит і запише на розбір з радником. Розбір — онлайн, 1-на-1, безкоштовно.", btn:"Записатися на розбір"},
+  done:{title:"Записатися на безкоштовний розбір", sub:"Оберіть зручний час — менеджер BRAVE зв'яжеться з вами, уточнить запит і запише на розбір з радником. Радник заздалегідь побачить ваші відповіді з оцінки — розмова почнеться не з нуля.", btn:"Записатися на розбір"}
 };
 var modal = $("#leadModal"), lastFocus = null, mSource = "modal";
 function openModal(source){
@@ -1099,6 +1244,7 @@ function openModal(source){
   f.hidden = false; ok.classList.remove("show"); ok.innerHTML = "";
   var submitError = f.querySelector("[data-submit-error]"); if (submitError) submitError.classList.remove("show");
   f.querySelector("[data-submit]").innerHTML = c.btn + ' <span aria-hidden="true">→</span>';
+  renderSlots(f);
   modal.classList.add("open"); modal.setAttribute("aria-hidden", "false"); document.body.classList.add("modal-open");
   setTimeout(function(){ $("#m_name").focus(); }, 60);
   track("lead_form_open", {source: source});
@@ -1115,17 +1261,27 @@ document.addEventListener("keydown", function(e){
 });
 $$("[data-lead]").forEach(function(b){ b.addEventListener("click", function(){ openModal(b.getAttribute("data-lead")); }); });
 
+function radioVal(form, name){ var r = form.querySelector('[name="' + name + '"]:checked'); return r ? r.value : ""; }
 function setErr(form, key, on){
   var el = form.querySelector('[data-err="' + key + '"]'), inp = form.querySelector('[name="' + key + '"]');
-  if (el) el.classList.toggle("show", on); if (inp) inp.setAttribute("aria-invalid", String(on));
+  if (el) el.classList.toggle("show", on);
+  if (inp && inp.type === "radio"){ var g = inp.closest(".chipsel"); if (g) g.setAttribute("aria-invalid", String(on)); }
+  else if (inp) inp.setAttribute("aria-invalid", String(on));
 }
+function focusRadio(form, name){ var r = form.querySelector('[name="' + name + '"]'); if (r){ r.focus({preventScroll: true}); r.closest(".field").scrollIntoView({block: "center", behavior: "smooth"}); } }
 function validate(form){
   var name = form.querySelector('[name="name"]'), phone = form.querySelector('[name="phone"]'), iti = itiMap[phone.id];
   var okN = name.value.trim().length > 0;
   var okP = iti ? (phone.value.trim() !== "" && iti.isValidNumber()) : phone.value.replace(/\D/g, "").length >= 9;
+  var needMoney = !quizResult;
+  var okI = !needMoney || !!radioVal(form, "income"), okS = !needMoney || !!radioVal(form, "savings"), okT = !!radioVal(form, "slot");
   setErr(form, "name", !okN); setErr(form, "phone", !okP);
+  setErr(form, "income", !okI); setErr(form, "savings", !okS); setErr(form, "slot", !okT);
   if (!okN){ name.focus(); return false; }
   if (!okP){ phone.focus(); return false; }
+  if (!okI){ focusRadio(form, "income"); return false; }
+  if (!okS){ focusRadio(form, "savings"); return false; }
+  if (!okT){ focusRadio(form, "slot"); return false; }
   return true;
 }
 function setMessengerAttention(form, on){
@@ -1136,15 +1292,26 @@ function setMessengerAttention(form, on){
 }
 function syncMessengerButton(form){
   var checkbox = form.querySelector('[name="messenger_confirmed"]');
-  var btn = form.querySelector("[data-submit]");
   var confirmed = checkbox && checkbox.checked;
-  if (btn) btn.setAttribute("aria-disabled", String(!confirmed));
+  $$("[data-submit],[data-submit-tg]", form).forEach(function(btn){ btn.setAttribute("aria-disabled", String(!confirmed)); });
   if (confirmed) setMessengerAttention(form, false);
 }
 var SOURCE_LABEL = {quiz_book:"форма під результатом оцінки", header:"кнопка в шапці", hero:"перший екран", final:"форма внизу сторінки", sticky:"липка кнопка на мобільному"};
-// Один текст для поля «коментар» у CRM: менеджер бачить запит, не розбираючи JSON
+var GROUP_LINE = {
+  A: "ГРУПА А — підходить, взяти першою",
+  B: "ГРУПА Б — під питанням, взяти другою",
+  C: "ГРУПА В — нижче порогу, не телефонувати (людині показано чесний екран без дзвінка)"
+};
+// Один текст для поля «коментар» у CRM: менеджер бачить головне в перших рядках, не розбираючи JSON
 function leadComment(lead){
-  var t = ["Джерело: " + (SOURCE_LABEL[lead.source] || lead.source)];
+  var t = [
+    GROUP_LINE[lead.lead_group],
+    "Дохід: " + (lead.income || "—") + " · Накопичення: " + (lead.savings || "—"),
+    "Зручний час: " + (lead.call_time || "—"),
+    lead.contact_via === "telegram" ? "Зв'язок: натиснув(-ла) «Записатися через Telegram» — має написати першим у Telegram, код у повідомленні" : "Зв'язок: звичайна заявка (на екрані подяки запропоновано написати в Telegram)",
+    "Код заявки: " + lead.lead_code,
+    "Джерело: " + (SOURCE_LABEL[lead.source] || lead.source)
+  ];
   var q = lead.quiz;
   if (!q){ t.push("Оцінку 4 компетенцій не проходив(-ла)."); return t.join("\n"); }
   t.push("Рівні: " + Object.keys(q.levels).map(function(k){ return k + " — " + q.levels[k]; }).join("; "));
@@ -1153,74 +1320,125 @@ function leadComment(lead){
   t.push("Резюме: " + q.summary);
   return t.join("\n");
 }
+// Екран після заявки: А і Б — час + запрошення в Telegram; В — чесний екран без дзвінка
+function okHTML(lead, via){
+  var name = esc(lead.name);
+  if (lead.lead_group === "C"){
+    var weak = quizResult ? COMP[quizResult.weakest].name : "";
+    return "<h3>Дякуємо, " + name + "!</h3>"
+      + '<p>Скажемо чесно: персональний супровід радника дає найбільше користі, коли дохід <span class="todo" title="ПІДТВЕРДИТИ поріг у BRAVE">від 3 000 $ на місяць або вже є накопичення від 20 000 $</span>. За меншого доходу він може не окупитися, тож зараз не забиратимемо ваш час дзвінком.</p>'
+      + (weak ? "<p>Ваш результат оцінки лишається на сторінці. Почніть із компетенції «" + esc(weak) + "» — там зараз найбільше можливостей.</p>" : "")
+      + '<p class="ok-later">Заявка в нас є. Коли ситуація зміниться, будемо раді допомогти.</p>';
+  }
+  var h = "<h3>Дякуємо, " + name + "! Заявку отримано</h3>"
+    + '<p>Менеджер BRAVE зв\'яжеться з вами <span class="ok-when">' + esc(lead.call_time_local || "найближчим часом") + "</span>, уточнить запит і запише на розбір з радником" + (lead.quiz ? " — радник уже бачитиме ваші відповіді з оцінки" : "") + ".</p>";
+  if (TG_ON){
+    var tg = esc(tgUrl(lead));
+    if (via === "telegram"){
+      h += '<div class="ok-tg"><h4>Відкриваємо Telegram…</h4><p>Повідомлення менеджеру вже готове — лишилося натиснути «Надіслати».</p>'
+        + '<a class="btn btn--block btn--tg-fill" href="' + tg + '" data-tg-open="thanks_retry">' + TG_SVG_W + "Чат не відкрився? Натисніть тут</a></div>";
+    } else {
+      h += '<div class="ok-tg"><h4>Останній крок — напишіть нам у Telegram</h4>'
+        + "<p>Так менеджер відповість у вашому чаті, а не з незнайомого номера, і повідомлення не загубиться серед спаму. Там же можна одразу поставити питання.</p>"
+        + '<a class="btn btn--block btn--tg-fill" href="' + tg + '" target="_blank" rel="noopener" data-tg-open="thanks">' + TG_SVG_W + "Написати в Telegram</a>"
+        + '<p class="form__tg-note">Повідомлення вже готове: ваше ім\'я і зручний час. Лишилося натиснути «Надіслати».</p></div>';
+    }
+  }
+  if (WA_PHONE) h += '<p class="ok-later">Зручніше WhatsApp? <a href="' + esc(waUrl(lead)) + '" target="_blank" rel="noopener" data-wa-open>Напишіть нам туди</a> — повідомлення теж буде готове.</p>';
+  return h;
+}
+function submitLead(form, via){
+  var messengerCheckbox = form.querySelector('[name="messenger_confirmed"]');
+  if (!messengerCheckbox.checked){
+    setMessengerAttention(form, true);
+    syncMessengerButton(form);
+    messengerCheckbox.focus();
+    return;
+  }
+  if (!validate(form)) return;
+  var phone = form.querySelector('[name="phone"]'), iti = itiMap[phone.id];
+  var source = form.getAttribute("data-source") === "modal" ? mSource : form.getAttribute("data-source");
+  var quiz = quizPayload();
+  var income = quizResult ? ans.q11 : radioVal(form, "income"), savings = quizResult ? ans.q12 : radioVal(form, "savings");
+  var slot = (form._slots || {})[radioVal(form, "slot")] || null;
+  var eventId = "lead_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);   // той самий ID іде в Meta Pixel і в CRM
+  var lead = {
+    name: form.name.value.trim(),
+    phone: iti ? iti.getNumber() : phone.value.trim(),
+    phone_country: iti ? (iti.getSelectedCountryData().iso2 || null) : null,
+    source: source,
+    lead_group: leadGroup(income, savings),
+    income: moneyLabel(INCOME_OPTS, income), savings: moneyLabel(SAVINGS_OPTS, savings),
+    call_time: slot ? slot.kyiv : null, call_time_local: slot ? slot.label : null,
+    call_start: slot ? slot.start : null, call_end: slot ? slot.end : null,
+    contact_via: via, lead_code: "4K-" + eventId.slice(-5).toUpperCase(),
+    quiz: quiz, lead_tag: quiz ? "quiz" : "direct",
+    utm_source: qs.get("utm_source"), utm_medium: qs.get("utm_medium"), utm_campaign: qs.get("utm_campaign"), utm_content: qs.get("utm_content"), fbclid: qs.get("fbclid"),
+    page: location.pathname, ts: new Date().toISOString(),
+    event_id: eventId
+  };
+  lead.comment = leadComment(lead);
+  var btns = $$("[data-submit],[data-submit-tg]", form);
+  var btn = via === "telegram" ? form.querySelector("[data-submit-tg]") : form.querySelector("[data-submit]");
+  btns.forEach(function(b){ b.disabled = true; }); btn.setAttribute("aria-busy", "true");
+  var submitError = form.querySelector("[data-submit-error]");
+  if (submitError) submitError.classList.remove("show");
+  var send = (IS_LOCAL && qs.get("send") !== "1")
+    ? Promise.resolve({ok: true})   // локальне превʼю не шле заявок у бойову CRM (?send=1 — надіслати)
+    : fetch(SUBMIT_URL, {
+        method: "POST",
+        credentials: "same-origin",
+        cache: "no-store",
+        headers: {"Content-Type": "application/json", "Accept": "application/json"},
+        body: JSON.stringify(lead)
+      });
+  send.then(function(response){
+    if (!response.ok) throw new Error("Lead endpoint returned " + response.status);
+    btns.forEach(function(b){ b.disabled = false; }); btn.removeAttribute("aria-busy");
+    if (IS_LOCAL){
+      window.__lastLead = lead;
+      if (window.console) console.info("[lead → CRM] delivered", lead);
+    }
+    track("lead_submit", {source: source, event_id: lead.event_id, group: lead.lead_group});
+    var ok = form.parentElement.querySelector("[data-ok]");
+    ok.innerHTML = okHTML(lead, via);
+    form.hidden = true; ok.classList.add("show");
+    $$("[data-tg-open]", ok).forEach(function(a){ a.addEventListener("click", function(){ track("tg_open", {source: source, cta: a.getAttribute("data-tg-open")}); }); });
+    $$("[data-wa-open]", ok).forEach(function(a){ a.addEventListener("click", function(){ track("wa_open", {source: source, cta: "thanks"}); }); });
+    // «Записатися через Telegram»: після запису в CRM одразу відкриваємо чат (крім групи В)
+    if (via === "telegram" && lead.lead_group !== "C"){
+      track("tg_open", {source: source, cta: "submit"});
+      if (TG_CONTACT) setTimeout(function(){ location.href = tgUrl(lead); }, 700);
+      else if (window.console) console.info("[telegram] TG_CONTACT порожній — на бойовому сайті тут відкрився б чат:", tgUrl(lead));
+    }
+  }).catch(function(error){
+    btns.forEach(function(b){ b.disabled = false; }); btn.removeAttribute("aria-busy");
+    if (submitError) submitError.classList.add("show");
+    if (IS_LOCAL && window.console) console.error("[lead → CRM] delivery failed", error);
+  });
+}
 $$("[data-form]").forEach(function(form){
   var messengerCheckbox = form.querySelector('[name="messenger_confirmed"]');
-  var submitButton = form.querySelector("[data-submit]");
+  renderSlots(form);
   syncMessengerButton(form);
   messengerCheckbox.addEventListener("change", function(){ syncMessengerButton(form); });
-  submitButton.addEventListener("click", function(e){
-    if (messengerCheckbox.checked) return;
-    e.preventDefault();
-    setMessengerAttention(form, true);
-    messengerCheckbox.focus();
-  });
-  form.querySelector('[name="name"]').addEventListener("blur", function(){ if (this.value.trim()) setErr(form, "name", false); });
-  form.querySelector('[name="phone"]').addEventListener("blur", function(){ var iti = itiMap[this.id]; if (this.value.trim() && iti) setErr(form, "phone", !iti.isValidNumber()); });
-  form.addEventListener("submit", function(e){
-    e.preventDefault();
-    if (!messengerCheckbox.checked){
+  $$("[data-submit],[data-submit-tg]", form).forEach(function(b){
+    b.addEventListener("click", function(e){
+      if (messengerCheckbox.checked) return;
+      e.preventDefault();
       setMessengerAttention(form, true);
-      syncMessengerButton(form);
       messengerCheckbox.focus();
-      return;
-    }
-    if (!validate(form)) return;
-    var phone = form.querySelector('[name="phone"]'), iti = itiMap[phone.id];
-    var source = form.getAttribute("data-source") === "modal" ? mSource : form.getAttribute("data-source");
-    var quiz = quizPayload();
-    var lead = {
-      name: form.name.value.trim(),
-      phone: iti ? iti.getNumber() : phone.value.trim(),
-      phone_country: iti ? (iti.getSelectedCountryData().iso2 || null) : null,
-      source: source,
-      quiz: quiz, lead_tag: quiz ? "quiz" : "direct",
-      utm_source: qs.get("utm_source"), utm_medium: qs.get("utm_medium"), utm_campaign: qs.get("utm_campaign"), utm_content: qs.get("utm_content"), fbclid: qs.get("fbclid"),
-      page: location.pathname, ts: new Date().toISOString(),
-      event_id: "lead_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8)   // той самий ID іде в Meta Pixel (Lead) і в CRM
-    };
-    lead.comment = leadComment(lead);
-    var btn = form.querySelector('button[type="submit"]'); btn.disabled = true;
-    btn.setAttribute("aria-busy", "true");
-    var submitError = form.querySelector("[data-submit-error]");
-    if (submitError) submitError.classList.remove("show");
-    fetch(SUBMIT_URL, {
-      method: "POST",
-      credentials: "same-origin",
-      cache: "no-store",
-      headers: {"Content-Type": "application/json", "Accept": "application/json"},
-      body: JSON.stringify(lead)
-    }).then(function(response){
-      if (!response.ok) throw new Error("Lead endpoint returned " + response.status);
-      btn.disabled = false;
-      btn.removeAttribute("aria-busy");
-      if (IS_LOCAL){
-        window.__lastLead = lead;
-        if (window.console) console.info("[lead → CRM] delivered", lead);
-      }
-      track("lead_submit", {source: source, event_id: lead.event_id});
-      var ok = form.parentElement.querySelector("[data-ok]");
-      var first = 'Менеджер BRAVE зв\'яжеться з вами <span class="todo" title="ПІДТВЕРДИТИ SLA">протягом робочого дня</span>.';
-      var steps = "<li>менеджер уточнить ваш запит і зручний час, підбере радника;</li><li>ви отримаєте підтвердження дати й часу розбору;</li><li>радник онлайн, 1-на-1, розбереться у вашій ситуації" + (quiz ? " — уже знаючи ваші відповіді з оцінки" : "") + ".</li>";
-      ok.innerHTML = "<h3>Дякуємо, " + esc(lead.name) + "!</h3><p>" + first + "</p><p style=\"margin-top:14px;font-weight:600\">Що далі:</p><ul>" + steps + "</ul>";
-      form.hidden = true; ok.classList.add("show");
-    }).catch(function(error){
-      btn.disabled = false;
-      btn.removeAttribute("aria-busy");
-      if (submitError) submitError.classList.add("show");
-      if (IS_LOCAL && window.console) console.error("[lead → CRM] delivery failed", error);
     });
   });
+  var tgBtn = form.querySelector("[data-submit-tg]");
+  if (tgBtn) tgBtn.addEventListener("click", function(){ if (messengerCheckbox.checked) submitLead(form, "telegram"); });
+  form.addEventListener("change", function(e){ if (e.target.type === "radio") setErr(form, e.target.name, false); });
+  form.querySelector('[name="name"]').addEventListener("blur", function(){ if (this.value.trim()) setErr(form, "name", false); });
+  form.querySelector('[name="phone"]').addEventListener("blur", function(){ var iti = itiMap[this.id]; if (this.value.trim() && iti) setErr(form, "phone", !iti.isValidNumber()); });
+  form.addEventListener("submit", function(e){ e.preventDefault(); submitLead(form, "form"); });
 });
+// вікна для дзвінка оновлюються, якщо сторінка довго відкрита
+setInterval(function(){ $$("[data-form]").forEach(function(f){ if (!f.hidden) renderSlots(f); }); }, 5 * 6e4);
 i18nReady.then(function(){ $$('input[type="tel"]').forEach(initPhone); });
 
 /* =========================================================
