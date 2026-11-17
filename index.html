@@ -638,7 +638,7 @@ var PIXEL_ID = "1669140901889164";   // піксель BRAVE (той самий,
 
 // Робочий Telegram менеджера: username без @ (напр. "brave_manager") або номер у форматі "+380XXXXXXXXX".
 // Порожньо = кнопок Telegram на сайті немає (на localhost вони показуються для перевірки).
-var TG_CONTACT = "";                 // ПІДСТАВИТИ: акаунт від BRAVE
+var TG_CONTACT = "lilia_bravecapital"; // робочий Telegram менеджера BRAVE (@lilia_bravecapital)
 var WA_PHONE = "";                   // необовʼязково: WhatsApp менеджера, лише цифри з кодом країни (напр. "380XXXXXXXXX")
 
 // Правило відбору — ЧЕРНЕТКА, остаточні пороги називає BRAVE.
@@ -654,8 +654,9 @@ var CALL_SLOTS = 4;                  // скільки найближчих ві
 
 var qs = new URLSearchParams(location.search);
 if (qs.get("review") === "1") document.documentElement.classList.add("review");
-// Локальне превʼю (localhost, файл) не шле подій у бойовий піксель. Для перевірки пікселя — ?pixel=1
-var IS_LOCAL = location.protocol === "file:" || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
+// Превʼю (localhost, файл, GitHub Pages) не шле заявок у бойову CRM і подій у бойовий піксель. Для перевірки пікселя — ?pixel=1
+// На GitHub Pages функції Netlify немає, тож заявка лише імітується; Telegram відкривається по-справжньому.
+var IS_LOCAL = location.protocol === "file:" || /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname) || /\.github\.io$/.test(location.hostname);
 if (IS_LOCAL && qs.get("pixel") !== "1") PIXEL_ID = "";
 
 function $(s, el){ return (el || document).querySelector(s); }
